@@ -10,10 +10,4 @@ import UIKit
 
 class MoreVC: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-
 }

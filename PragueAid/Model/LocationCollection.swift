@@ -11,11 +11,11 @@ import MapKit
 
 
 class LocationCollection: Codable {
-    let features: [Location]
+    let features: [Target]
 }
 
 
-class Location: NSObject, Codable, MKAnnotation {
+class Target: NSObject, Codable, MKAnnotation {
     private let geometry: Geometry
     private let properties: Properties
     

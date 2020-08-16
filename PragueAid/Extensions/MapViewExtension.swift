@@ -9,13 +9,7 @@
 import Foundation
 import MapKit
 
-extension MKMapView {
-    
-    func centerToLocation(location: CLLocation, radius: CLLocationDistance = 1000){
-        let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius, longitudinalMeters: radius)
-        setRegion(region, animated: true)
-    }
-    
+extension MKMapView {    
     
     func constrainToPrague(){
         let pragueCenter = CLLocation(latitude: 50.0834225, longitude: 14.4241778)

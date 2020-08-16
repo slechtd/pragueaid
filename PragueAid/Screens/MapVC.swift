@@ -12,12 +12,12 @@ import CoreLocation
 
 class MapVC: UITabBarController {
     
-    
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
     let regionMeters: Double = 500
     var permissionsGranted = false
-    var fetchedLocations: [Location] = []
+    var trackingOn = false
+    var fetchedLocations: [Target] = []
     
     
     override func viewDidLoad() {
@@ -26,14 +26,14 @@ class MapVC: UITabBarController {
         configureVC()
         checkLocationServices()
         configureMapView()
-        getAllLocations()
+        getTargets()
     }
     
     
     private func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-            checkLocationAuth()
+            //checkLocationAuth()
         } else {
             //show allert
         }
@@ -52,14 +52,15 @@ class MapVC: UITabBarController {
             //show allert
             centerOnDefaultLocation()
         case .authorizedAlways:
-            break
+            permissionsGranted = true
+            mapView.showsUserLocation = true
+            centerOnUserLocation()
         case .authorizedWhenInUse:
             permissionsGranted = true
             mapView.showsUserLocation = true
             centerOnUserLocation()
-            //locationManager.startUpdatingLocation()
         @unknown default:
-            centerOnDefaultLocation()
+            centerOnUserLocation()
         }
     }
     
@@ -79,13 +80,13 @@ class MapVC: UITabBarController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         mapView.frame = view.bounds
-        //mapView.constrainToPrague()
+        mapView.constrainToPrague()
     }
     
     
     private func centerOnDefaultLocation(){
         let location = CLLocationCoordinate2D(latitude: 50.0834225, longitude: 14.4241778)
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
+        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters*2)
         mapView.setRegion(region, animated: true)
     }
     
@@ -98,11 +99,11 @@ class MapVC: UITabBarController {
     }
     
     
-    private func getAllLocations(){
-        NetworkManager.shared.getAllLocations { result in
+    private func getTargets(){
+        NetworkManager.shared.getTargets() { result in
             switch result {
-            case .success(let result):
-                self.fetchedLocations = result.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}
+            case .success(let targets):
+                self.fetchedLocations = targets.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}
                 DispatchQueue.main.async{self.addAnnotations()}
             case .failure(let error):
                 print(error)
@@ -112,20 +113,23 @@ class MapVC: UITabBarController {
     
     
     private func configureVC(){
-        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(trackUserLocationButtonPressed))
+        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
         let settingsButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.setting.rawValue), style: .plain, target: self, action: #selector(SettingsButtonPressed))
+        
         centerToUserLocationButton.tintColor = .systemRed
         settingsButton.tintColor = .systemRed
+        
         navigationItem.rightBarButtonItem = centerToUserLocationButton
         navigationItem.leftBarButtonItem = settingsButton
     }
     
     
-    @objc private func trackUserLocationButtonPressed(){
+    @objc private func centerToUserLocationButtonPressed(){
         if permissionsGranted {
-            locationManager.startUpdatingLocation()
+            centerOnUserLocation()
         } else {
             //show allert
+            print("no persmissions")
         }
     }
     
@@ -141,7 +145,7 @@ class MapVC: UITabBarController {
 extension MapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let annotation = annotation as? Location else { return nil }
+        guard let annotation = annotation as? Target else { return nil }
         let identifier = "location"
         var view: MKMarkerAnnotationView
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
@@ -158,7 +162,7 @@ extension MapVC: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation as? Location else { return }
+        guard let location = view.annotation as? Target else { return }
         //let launchOptions = []
         print("YOOOO. \(String(describing: location.title))")
     }
@@ -166,21 +170,15 @@ extension MapVC: MKMapViewDelegate {
 
 
 extension MapVC: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
-        mapView.setRegion(region, animated: true)
-    }
-    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+        checkLocationAuth()
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+        //show allert
     }
 }
 

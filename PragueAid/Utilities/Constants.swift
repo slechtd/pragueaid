@@ -10,7 +10,7 @@ import Foundation
 
 
 enum SFSymbol: String {
-    case nav = "location.fill"
+    case nav = "location"
     case setting = "slider.horizontal.3"
     
     case map = "map"
