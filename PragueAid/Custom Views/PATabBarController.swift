@@ -20,7 +20,7 @@ class PATabBarController: UITabBarController {
     func MapNC() -> UINavigationController {
         let mapVC = MapVC()
         mapVC.title = "Search Places"
-        mapVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        mapVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: SFSymbol.map.rawValue), selectedImage: UIImage(systemName: SFSymbol.mapFill.rawValue))
         return UINavigationController(rootViewController: mapVC)
     }
     

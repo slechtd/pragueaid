@@ -11,9 +11,10 @@ import Foundation
 class NetworkManager {
     
     static let shared = NetworkManager()
-    let baseUrlString = "http://opendata.praha.eu/dataset/78c4691d-b0a3-4ba7-b3c4-0a97d3491253/resource/1516aad7-8319-4417-9db6-22f0a56f776c/download/c97f002f-d79c-4b0c-b2bb-0411025334fa-medical-institutions.json"
+    let baseUrlString = "https://api.golemio.cz/v2/medicalinstitutions"
+    let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbi5zbGVjaHRhQGdtYWlsLmNvbSIsImlkIjozNTksIm5hbWUiOm51bGwsInN1cm5hbWUiOm51bGwsImlhdCI6MTU5NzU3MDY2NSwiZXhwIjoxMTU5NzU3MDY2NSwiaXNzIjoiZ29sZW1pbyIsImp0aSI6IjM0Mzc1NWJlLTRmYTktNGVmYS1hMGU1LTA5NjM4MWM0YjY1YiJ9.rQxBlzqmcA3wsXUluPFBDK3M1QUprjq6w4lmO3ozoaE"
     
-    func getAllLocations(completed: @escaping(Result<Collection, PAError>) -> Void) {
+    func getAllLocations(completed: @escaping(Result<LocationCollection, PAError>) -> Void) {
         
         let endpointString = baseUrlString + ""
         
@@ -21,8 +22,12 @@ class NetworkManager {
             completed(.failure(.invalidURL))
             return
         }
-
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(apiKey, forHTTPHeaderField: "x-access-token")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -37,9 +42,10 @@ class NetworkManager {
             }
             do {
                 let decoder = JSONDecoder()
-                let locations = try decoder.decode(Collection.self, from: data)
+                let locations = try decoder.decode(LocationCollection.self, from: data)
                 completed(.success(locations))
             } catch {
+                print(response)
                 completed(.failure(.unableToDecode))
             }
         }

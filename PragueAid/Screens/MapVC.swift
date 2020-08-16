@@ -12,20 +12,21 @@ import MapKit
 class MapVC: UITabBarController {
     
     let mapView = MKMapView()
-    var locations: [Location] = []
-
+    var fetchedLocations: [Location] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        configureVC()
         configureMapView()
         setInitialLocation()
         getAllLocations()
-
     }
     
     
-    func addAnnotations(){
-        mapView.addAnnotations(locations)
+    private func addAnnotations(){
+        mapView.addAnnotations(fetchedLocations)
     }
     
     
@@ -47,19 +48,40 @@ class MapVC: UITabBarController {
         NetworkManager.shared.getAllLocations { result in
             switch result {
             case .success(let result):
-                self.locations = result.features
+                self.fetchedLocations = result.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}
                 DispatchQueue.main.async{self.addAnnotations()}
             case .failure(let error):
                 print(error)
             }
         }
     }
-
+    
+    
+    private func configureVC(){
+        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
+        let settingsButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.setting.rawValue), style: .plain, target: self, action: #selector(SettingsButtonPressed))
+        centerToUserLocationButton.tintColor = .systemRed
+        settingsButton.tintColor = .systemRed
+        navigationItem.rightBarButtonItem = centerToUserLocationButton
+        navigationItem.leftBarButtonItem = settingsButton
+    }
+    
+    
+    @objc private func centerToUserLocationButtonPressed(){
+        
+    }
+    
+    
+    @objc private func SettingsButtonPressed(){
+        
+    }
+    
 }
 
-//MARK: - extensions
+//MARK: - protocol extensions
 
 extension MapVC: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? Location else { return nil }
         let identifier = "location"
@@ -74,6 +96,13 @@ extension MapVC: MKMapViewDelegate {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return view
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let location = view.annotation as? Location else { return }
+        //let launchOptions = []
+        print("YOOOO. \(String(describing: location.title))")
     }
 }
 

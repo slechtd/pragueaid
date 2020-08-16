@@ -15,9 +15,10 @@
 		68AF590724E7D5AA00C03645 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AF590624E7D5AA00C03645 /* MapVC.swift */; };
 		68AF590924E7D5B600C03645 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AF590824E7D5B600C03645 /* MoreVC.swift */; };
 		68DC85E724E7DD25008BA62F /* MapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85E624E7DD25008BA62F /* MapViewExtension.swift */; };
-		68DC85EA24E7E5CC008BA62F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85E924E7E5CC008BA62F /* Collection.swift */; };
+		68DC85EA24E7E5CC008BA62F /* LocationCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85E924E7E5CC008BA62F /* LocationCollection.swift */; };
 		68DC85EE24E8033F008BA62F /* PAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85ED24E8033F008BA62F /* PAError.swift */; };
 		68DC85F024E803AF008BA62F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85EF24E803AF008BA62F /* NetworkManager.swift */; };
+		68DC85F424E92435008BA62F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DC85F324E92435008BA62F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +32,10 @@
 		68AF590624E7D5AA00C03645 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		68AF590824E7D5B600C03645 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		68DC85E624E7DD25008BA62F /* MapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewExtension.swift; sourceTree = "<group>"; };
-		68DC85E924E7E5CC008BA62F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		68DC85E924E7E5CC008BA62F /* LocationCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollection.swift; sourceTree = "<group>"; };
 		68DC85ED24E8033F008BA62F /* PAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAError.swift; sourceTree = "<group>"; };
 		68DC85EF24E803AF008BA62F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		68DC85F324E92435008BA62F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,7 @@
 		68DC85E824E7E5AD008BA62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				68DC85E924E7E5CC008BA62F /* Collection.swift */,
+				68DC85E924E7E5CC008BA62F /* LocationCollection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				68DC85ED24E8033F008BA62F /* PAError.swift */,
+				68DC85F324E92435008BA62F /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -213,10 +216,11 @@
 				68AF590924E7D5B600C03645 /* MoreVC.swift in Sources */,
 				68DC85E724E7DD25008BA62F /* MapViewExtension.swift in Sources */,
 				68DC85EE24E8033F008BA62F /* PAError.swift in Sources */,
+				68DC85F424E92435008BA62F /* Constants.swift in Sources */,
 				68AF590524E7D53100C03645 /* PATabBarController.swift in Sources */,
 				68AF58F124E7D48400C03645 /* AppDelegate.swift in Sources */,
 				68AF58F324E7D48400C03645 /* SceneDelegate.swift in Sources */,
-				68DC85EA24E7E5CC008BA62F /* Collection.swift in Sources */,
+				68DC85EA24E7E5CC008BA62F /* LocationCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
