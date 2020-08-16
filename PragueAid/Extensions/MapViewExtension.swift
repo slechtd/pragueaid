@@ -19,7 +19,7 @@ extension MKMapView {
     
     func constrainToPrague(){
         let pragueCenter = CLLocation(latitude: 50.0834225, longitude: 14.4241778)
-        self.setCameraBoundary(CameraBoundary(coordinateRegion: MKCoordinateRegion(center: pragueCenter.coordinate, latitudinalMeters: 25000, longitudinalMeters: 25000)), animated: true)
+        self.setCameraBoundary(CameraBoundary(coordinateRegion: MKCoordinateRegion(center: pragueCenter.coordinate, latitudinalMeters: 25000, longitudinalMeters: 50000)), animated: true)
         let zoomRange = CameraZoomRange(maxCenterCoordinateDistance: 75000)
         self.setCameraZoomRange(zoomRange, animated: true)
     }
