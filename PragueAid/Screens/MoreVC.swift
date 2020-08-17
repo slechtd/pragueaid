@@ -9,5 +9,10 @@
 import UIKit
 
 class MoreVC: UITabBarController {
+    
+    
+    override func viewDidLoad() {
+        view.backgroundColor = .systemBackground
+    }
 
 }

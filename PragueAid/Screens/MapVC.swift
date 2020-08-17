@@ -33,9 +33,8 @@ class MapVC: UITabBarController {
     private func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-            //checkLocationAuth()
         } else {
-            //show allert
+            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
         }
     }
     
@@ -46,10 +45,10 @@ class MapVC: UITabBarController {
             centerOnDefaultLocation()
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            //show allert
+            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
             centerOnDefaultLocation()
         case .denied:
-            //show allert
+            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
             centerOnDefaultLocation()
         case .authorizedAlways:
             permissionsGranted = true
@@ -124,12 +123,18 @@ class MapVC: UITabBarController {
     }
     
     
+    private func presentTargetVC(target: Target){
+        let destVC = TargetVC(target: target)
+        let navControler = UINavigationController(rootViewController: destVC)
+        present(navControler, animated: true)
+    }
+    
+    
     @objc private func centerToUserLocationButtonPressed(){
         if permissionsGranted {
             centerOnUserLocation()
         } else {
-            //show allert
-            print("no persmissions")
+            self.presentAlert(message: .thisFeature, title: .noPermissions)
         }
     }
     
@@ -146,7 +151,7 @@ extension MapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? Target else { return nil }
-        let identifier = "location"
+        let identifier = "target"
         var view: MKMarkerAnnotationView
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
@@ -162,10 +167,11 @@ extension MapVC: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation as? Target else { return }
-        //let launchOptions = []
-        print("YOOOO. \(String(describing: location.title))")
+        guard let target = view.annotation as? Target else { return }
+        presentTargetVC(target: target)
     }
+    
+    
 }
 
 

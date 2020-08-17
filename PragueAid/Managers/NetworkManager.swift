@@ -14,7 +14,7 @@ class NetworkManager {
     let baseUrlString = "https://api.golemio.cz/v2/medicalinstitutions"
     let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbi5zbGVjaHRhQGdtYWlsLmNvbSIsImlkIjozNTksIm5hbWUiOm51bGwsInN1cm5hbWUiOm51bGwsImlhdCI6MTU5NzU3MDY2NSwiZXhwIjoxMTU5NzU3MDY2NSwiaXNzIjoiZ29sZW1pbyIsImp0aSI6IjM0Mzc1NWJlLTRmYTktNGVmYS1hMGU1LTA5NjM4MWM0YjY1YiJ9.rQxBlzqmcA3wsXUluPFBDK3M1QUprjq6w4lmO3ozoaE"
     
-    func getTargets(params: String = "", completed: @escaping(Result<LocationCollection, PAError>) -> Void) {
+    func getTargets(params: String = "", completed: @escaping(Result<TargetCollection, PAError>) -> Void) {
         
         let endpointString = baseUrlString + params
         
@@ -42,7 +42,7 @@ class NetworkManager {
             }
             do {
                 let decoder = JSONDecoder()
-                let locations = try decoder.decode(LocationCollection.self, from: data)
+                let locations = try decoder.decode(TargetCollection.self, from: data)
                 completed(.success(locations))
             } catch {
                 print(response)
