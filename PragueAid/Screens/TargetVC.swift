@@ -51,13 +51,16 @@ class TargetVC: UIViewController {
         
         let headerFrame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
         let footerFrame = CGRect(x: 0, y: 88, width: view.frame.width, height: 50)
+        
+        
+        
         headerView = PATargetHeaderView(frame: headerFrame)
-        footerView = PAFooterView(frame: footerFrame)
+        footerView = PAFooterView(frame: footerFrame, message: "Last Updated: \(target!.updatedAt.prefix(7))")
+        
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
         
         headerView?.backgroundColor = .systemPink
-        footerView?.backgroundColor = .systemTeal
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
