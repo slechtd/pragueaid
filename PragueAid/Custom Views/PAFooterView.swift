@@ -35,7 +35,7 @@ class PAFooterView: UIView {
     private func configureTitleLabel(){
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = message
-        label.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.textColor = .secondaryLabel
         label.textAlignment = .center
         

@@ -16,7 +16,6 @@ class MapVC: UITabBarController {
     let locationManager = CLLocationManager()
     let regionMeters: Double = 500
     var permissionsGranted = false
-    var trackingOn = false
     var fetchedLocations: [Target] = []
     
     
@@ -34,32 +33,8 @@ class MapVC: UITabBarController {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         } else {
-            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-        }
-    }
-    
-    
-    private func checkLocationAuth(){
-        switch CLLocationManager.authorizationStatus() {
-        case .notDetermined:
             centerOnDefaultLocation()
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
             self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-            centerOnDefaultLocation()
-        case .denied:
-            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-            centerOnDefaultLocation()
-        case .authorizedAlways:
-            permissionsGranted = true
-            mapView.showsUserLocation = true
-            centerOnUserLocation()
-        case .authorizedWhenInUse:
-            permissionsGranted = true
-            mapView.showsUserLocation = true
-            centerOnUserLocation()
-        @unknown default:
-            centerOnUserLocation()
         }
     }
     
@@ -178,13 +153,40 @@ extension MapVC: MKMapViewDelegate {
 extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuth()
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
-        //show allert
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                print("not determined")
+                centerOnDefaultLocation()
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                print("restricted")
+                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+                centerOnDefaultLocation()
+            case .denied:
+                print("denied")
+                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+                centerOnDefaultLocation()
+            case .authorizedAlways:
+                print("allways")
+                permissionsGranted = true
+                mapView.showsUserLocation = true
+                centerOnUserLocation()
+            case .authorizedWhenInUse:
+                print("in use")
+                permissionsGranted = true
+                mapView.showsUserLocation = true
+                centerOnUserLocation()
+            @unknown default:
+                print("default")
+                centerOnUserLocation()
+            }
+        }
+        
+        
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print(error.localizedDescription)
+        }
     }
 }
-

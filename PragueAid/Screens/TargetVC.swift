@@ -32,14 +32,21 @@ class TargetVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        configureNC()
+        configureVC()
         configureTableView()
     }
     
     
-    private func configureNC(){
+    private func configureVC(){
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = target?.name
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    
+    @objc private func dismissVC(){
+        dismiss(animated: true)
     }
     
     
