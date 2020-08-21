@@ -16,7 +16,7 @@ enum TargetTableViewSections: Int, CaseIterable/*, CustomStringConvertible*/ {
         switch self {
         case .information: return "Information:"
         case .openingHours: return "Opening Hours:"
-        case .credentials: return "Pharmacy credentials:"
+        case .credentials: return "Pharmacy Credentials:"
         }
     }
 }

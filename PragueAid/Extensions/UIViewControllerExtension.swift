@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+    
     func presentErrorAlert(for error: PAError, title: AlertMessages = AlertMessages.oops){
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title.rawValue, message: error.rawValue, preferredStyle: .alert)
