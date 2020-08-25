@@ -10,7 +10,7 @@ import UIKit
 
 class PAFooterView: UIView {
     
-    let label = UILabel()
+    let label = PASecondaryLabel()
     
     var message: String?
     
@@ -35,9 +35,6 @@ class PAFooterView: UIView {
     private func configureTitleLabel(){
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = message
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textColor = .secondaryLabel
-        label.textAlignment = .center
         
         self.addSubview(label)
         

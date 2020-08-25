@@ -14,13 +14,22 @@ enum SFSymbol: String {
     case mapFill = "map.fill"
     case safari = "safari"
     case safariFill = "safari.fill"
+    case star = "star"
+    case starFill = "star.fill"
+    case phone = "phone"
     case bandage = "bandage.fill"
+    case unavailable = "exclamationmark"
+    case chevron = "chevron.compact.right"
+    case type = "questionmark"
+    case address = "mappin"
+    case email = "envelope"
+    case web = "globe"
 }
+
 
 
 enum AlertMessages: String {
     case oops = "Oops, something went wrong"
-    
     case noPermissions = "No Location Permissions"
     case restrictedPermissions = "Restricted Location Permissions"
     case noUserlocation = "PragueAid has troubles determining your location. Please try again later"

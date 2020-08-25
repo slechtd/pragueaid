@@ -32,8 +32,53 @@ class Target: NSObject, Codable, MKAnnotation {
     var email: [String] {return properties.email}
     var telephone: [String] {return properties.telephone}
     var web: [String] {return properties.web}
-    var locationTypeGroup: LocationTypeGroup {return properties.type.group}
-    var locationTypeID: LocationTypeID {return properties.type.id}
+    var targetTypeGroup: TargetTypeGroup {return properties.type.group}
+    var targetTypeID: TargetTypeID {return properties.type.id}
     var typeDescription: String {return properties.type.typeDescription}
     var openingHours: [OpeningHour]? {return properties.openingHours}
+    
+    
+    func getInfoProperties() -> [InfoSectionCellContent] {
+        return [
+            InfoSectionCellContent(action: .none, content: typeDescription, icon: .type),
+            InfoSectionCellContent(action: .address, content: address, icon: .address),
+            InfoSectionCellContent(action: .email, content: email.getSanitizedElement(at: 0) ?? "", icon: .email),
+            InfoSectionCellContent(action: .phone, content: telephone.getSanitizedElement(at: 0) ?? "", icon: .phone),
+            InfoSectionCellContent(action: .web, content: web.getSanitizedElement(at: 0) ?? "", icon: .web)
+        ]
+    }
+    
+    
+    func getOpeningProperties() -> [String] {
+        guard let openingHours = openingHours else {return []}
+        guard !openingHours.isEmpty else { return [] }
+        
+        var result: [String] = ["Monday: Closed", "Tuesday: Closed", "Wednesday: Closed", "Thursday: Closed", "Friday: Closed", "Saturday: Closed", "Sunday: Closed", "Public Holidays: Closed", ]
+        
+        for i in openingHours {
+            switch i.dayOfWeek {
+            case .monday:
+                result[0] = "Monday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .tuesday:
+                result[1] = "Tuesday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .wednesday:
+                result[2] = "Wednesday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .thursday:
+                result[3] = "Thursday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .friday:
+                result[4] = "Friday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .saturday:
+                result[5] = "Saturday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .sunday:
+                result[6] = "Sunday: " + "\(i.opens)" + "-" + "\(i.closes)"
+            case .publicHolidays:
+                result[7] = "Public Holidays: " + "\(i.opens)" + "-" + "\(i.closes)"
+            }
+        }
+        return result
+    }
+    
 }
+
+
+
