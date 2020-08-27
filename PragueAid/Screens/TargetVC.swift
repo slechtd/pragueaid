@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class TargetVC: UIViewController {
 
@@ -86,25 +87,32 @@ class TargetVC: UIViewController {
     }
     
     
-    @objc private func navButtonTapped(){print("navButtonTapped")}
-    @objc private func callButtonTapped(){print("callButtonTapped")}
-    @objc private func favButtonTapped(){print("favButtonTapped")}
+    @objc private func navButtonTapped(){launchMaps()}
+    @objc private func callButtonTapped(){}
+    @objc private func favButtonTapped(){}
+    
+    
+    private func launchMaps(){
+        target.mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+    }
 
     
     private func generateCells(){
         
-        for property in target.getInfoProperties() {
-            let cell = PAInfoCell(infoProperty: property)
-            infoCells.append(cell)
+        for cellContent in target.getInfoContent() {
+            if cellContent.textLine1 != "" {
+                let cell = PAInfoCell(cellContent: cellContent)
+                infoCells.append(cell)
+            }
         }
         
         
-        if target.getOpeningProperties().isEmpty {
+        if target.getOpenings().isEmpty {
             let cell = PAInfoCell(content: "Unavailable", imageString: SFSymbol.unavailable.rawValue)
             cell.action = .web
             openingHourCells.append(cell)
         } else {
-            for property in target.getOpeningProperties() {
+            for property in target.getOpenings() {
                 let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
                 openingHourCells.append(cell)
             }
@@ -115,9 +123,46 @@ class TargetVC: UIViewController {
             let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
             credentialCells.append(cell)
         }
-        
     }
     
+    
+    private func generateEmailActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.email1 != "" {actionSheet.addAction(UIAlertAction(title: target.email1, style: .default, handler: { action in
+            print(self.target.email1)
+        }))}
+        if target.email2 != "" {actionSheet.addAction(UIAlertAction(title: target.email2, style: .default, handler: { action in
+            print(self.target.email2)
+        }))}
+        return actionSheet
+    }
+    
+    
+    private func generateTelephoneActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.telephone1 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone1, style: .default, handler: { action in
+            print(self.target.telephone1)
+        }))}
+        if target.telephone2 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone2, style: .default, handler: { action in
+            print(self.target.telephone2)
+        }))}
+        return actionSheet
+    }
+    
+    
+    private func generateWebActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.web1 != "" {actionSheet.addAction(UIAlertAction(title: target.web1, style: .default, handler: { action in
+            print(self.target.web1)
+        }))}
+        if target.web2 != "" {actionSheet.addAction(UIAlertAction(title: target.web2, style: .default, handler: { action in
+            print(self.target.web2)
+        }))}
+        return actionSheet
+    }
 }
 
 
@@ -129,7 +174,11 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return TargetTableViewSections.allCases.count
+        if target.targetTypeGroup == .pharmacies {
+            return TargetTableViewSections.allCases.count
+        } else {
+            return TargetTableViewSections.allCases.count - 1
+        }
     }
     
     
@@ -149,7 +198,6 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
-        
         switch indexPath.section {
         case 0:
             return infoCells[indexPath.row]
@@ -160,8 +208,6 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         default:
             break
         }
-        
-        
         return cell
     }
     
@@ -174,10 +220,25 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0: print(infoCells[indexPath.row].action)
-        case 1: print(infoCells[indexPath.row].action)
-        case 2: print(infoCells[indexPath.row].action)
-        default: return
+        case 0:
+            switch infoCells[indexPath.row].action {
+            case .address:
+                launchMaps()
+            case .email:
+                self.present(generateEmailActionSheet(), animated: true)
+            case .phone:
+                self.present(generateTelephoneActionSheet(), animated: true)
+            case .web:
+                self.present(generateWebActionSheet(), animated: true)
+            default:
+                break
+            }
+        case 1:
+            return
+        case 2:
+            return
+        default:
+            return
         }
     }
     

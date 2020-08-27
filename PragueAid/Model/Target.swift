@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import Contacts
 
 class Target: NSObject, Codable, MKAnnotation {
     private let geometry: Geometry
@@ -21,6 +22,9 @@ class Target: NSObject, Codable, MKAnnotation {
         let result = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lon))
         return result
     }
+    var mapItem: MKMapItem{
+        return MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: [CNPostalAddressStreetKey: name]))
+    }
     
     var geometryType: String {return geometry.type}
     var id: String {return properties.id}
@@ -29,27 +33,33 @@ class Target: NSObject, Codable, MKAnnotation {
     var updatedAt: String {return properties.updatedAt}
     var country: String {return properties.address.addressCountry}
     var address: String {return "\(properties.address.streetAddress)" + " \(properties.address.addressLocality)"}
-    var email: [String] {return properties.email}
-    var telephone: [String] {return properties.telephone}
-    var web: [String] {return properties.web}
+    
+    var email1: String {return properties.email.getSanitizedElement(at: 0) ?? ""}
+    var email2: String {return properties.email.getSanitizedElement(at: 1) ?? ""}
+    var telephone1: String {return properties.telephone.getSanitizedElement(at: 0) ?? ""}
+    var telephone2: String {return properties.telephone.getSanitizedElement(at: 1) ?? ""}
+    var web1: String {return properties.web.getSanitizedElement(at: 0) ?? ""}
+    var web2: String {return properties.web.getSanitizedElement(at: 1) ?? ""}
+    
     var targetTypeGroup: TargetTypeGroup {return properties.type.group}
     var targetTypeID: TargetTypeID {return properties.type.id}
     var typeDescription: String {return properties.type.typeDescription}
     var openingHours: [OpeningHour]? {return properties.openingHours}
     
     
-    func getInfoProperties() -> [InfoSectionCellContent] {
+    func getInfoContent() -> [InfoSectionCellContent] {
+        
         return [
-            InfoSectionCellContent(action: .none, content: typeDescription, icon: .type),
-            InfoSectionCellContent(action: .address, content: address, icon: .address),
-            InfoSectionCellContent(action: .email, content: email.getSanitizedElement(at: 0) ?? "", icon: .email),
-            InfoSectionCellContent(action: .phone, content: telephone.getSanitizedElement(at: 0) ?? "", icon: .phone),
-            InfoSectionCellContent(action: .web, content: web.getSanitizedElement(at: 0) ?? "", icon: .web)
+            InfoSectionCellContent(action: .none, textLine1: typeDescription, textLine2: nil, icon: .type),
+            InfoSectionCellContent(action: .address, textLine1: address, textLine2: nil, icon: .address),
+            InfoSectionCellContent(action: .email, textLine1: email1, textLine2: email2, icon: .email),
+            InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2, icon: .phone),
+            InfoSectionCellContent(action: .web, textLine1: web1, textLine2: web2, icon: .web)
         ]
     }
     
     
-    func getOpeningProperties() -> [String] {
+    func getOpenings() -> [String] {
         guard let openingHours = openingHours else {return []}
         guard !openingHours.isEmpty else { return [] }
         

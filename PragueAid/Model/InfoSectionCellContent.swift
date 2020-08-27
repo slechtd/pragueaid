@@ -12,7 +12,8 @@ import Foundation
 
 struct InfoSectionCellContent {
     var action: CellAction
-    var content: String
+    var textLine1: String
+    var textLine2: String?
     var icon: SFSymbol
 }
 
@@ -22,4 +23,5 @@ enum CellAction {
     case email
     case phone
     case web
+    case favorite
 }

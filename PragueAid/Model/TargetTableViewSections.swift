@@ -7,7 +7,7 @@
 //
 
 
-enum TargetTableViewSections: Int, CaseIterable/*, CustomStringConvertible*/ {
+enum TargetTableViewSections: Int, CaseIterable {
     case information
     case openingHours
     case credentials

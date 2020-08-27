@@ -61,7 +61,8 @@ class MapVC: UITabBarController {
     
     
     private func getTargets(){
-        NetworkManager.shared.getTargets() { result in
+        NetworkManager.shared.getTargets() { [weak self] result in
+            guard let self = self else {return}
             switch result {
             case .success(let targets):
                 self.fetchedLocations = targets.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}

@@ -36,11 +36,20 @@ class PAInfoCell: UITableViewCell {
         imageView?.image = UIImage(systemName: imageString)
     }
     
-    convenience init(infoProperty: InfoSectionCellContent){
+    convenience init(cellContent: InfoSectionCellContent){
         self.init()
-        textLabel?.text = infoProperty.content
-        imageView?.image = UIImage(systemName: infoProperty.icon.rawValue)
-        action = infoProperty.action
+        
+        imageView?.image = UIImage(systemName: cellContent.icon.rawValue)
+        action = cellContent.action
+        
+        if cellContent.textLine2 == nil || cellContent.textLine2 == "" {
+            textLabel?.numberOfLines = 1
+            textLabel?.text = cellContent.textLine1
+        } else {
+            textLabel?.numberOfLines = 2
+            textLabel?.text = "\(cellContent.textLine1)\n\(cellContent.textLine2!)"
+        }
+        
     }
     
     
