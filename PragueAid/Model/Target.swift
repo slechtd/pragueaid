@@ -10,45 +10,41 @@ import Foundation
 import MapKit
 import Contacts
 
+
 class Target: NSObject, Codable, MKAnnotation {
+    
+    //Properties as decoded from json fetches via NetworkManager. 
     private let geometry: Geometry
     private let properties: Properties
     
-    var title: String? {return properties.name}
-    var subtitle: String? { return properties.type.typeDescription}
-    var coordinate: CLLocationCoordinate2D {
-        let lat = self.geometry.coordinates[1]
-        let lon = self.geometry.coordinates[0]
-        let result = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(lon))
-        return result
-    }
-    var mapItem: MKMapItem{
-        return MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: [CNPostalAddressStreetKey: name]))
-    }
+    //MapKit stuff
+    var title: String? {properties.name}
+    var subtitle: String? {properties.type.typeDescription}
+    var coordinate: CLLocationCoordinate2D {return CLLocationCoordinate2D(latitude: self.geometry.coordinates[1], longitude: self.geometry.coordinates[0])}
+    var mapItem: MKMapItem{MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: [CNPostalAddressStreetKey: name]))}
     
-    var geometryType: String {return geometry.type}
-    var id: String {return properties.id}
-    var institutionCode: String {return properties.institutionCode}
-    var name: String {return properties.name}
-    var updatedAt: String {return properties.updatedAt}
-    var country: String {return properties.address.addressCountry}
-    var address: String {return "\(properties.address.streetAddress)" + " \(properties.address.addressLocality)"}
-    
-    var email1: String {return properties.email.getSanitizedElement(at: 0) ?? ""}
-    var email2: String {return properties.email.getSanitizedElement(at: 1) ?? ""}
-    var telephone1: String {return properties.telephone.getSanitizedElement(at: 0) ?? ""}
-    var telephone2: String {return properties.telephone.getSanitizedElement(at: 1) ?? ""}
-    var web1: String {return properties.web.getSanitizedElement(at: 0) ?? ""}
-    var web2: String {return properties.web.getSanitizedElement(at: 1) ?? ""}
-    
-    var targetTypeGroup: TargetTypeGroup {return properties.type.group}
-    var targetTypeID: TargetTypeID {return properties.type.id}
-    var typeDescription: String {return properties.type.typeDescription}
-    var openingHours: [OpeningHour]? {return properties.openingHours}
+    //Other properties formatted for convenient access
+    var geometryType: String {geometry.type}
+    var id: String {properties.id}
+    var institutionCode: String {properties.institutionCode}
+    var name: String {properties.name}
+    var updatedAt: String {properties.updatedAt}
+    var country: String {properties.address.addressCountry}
+    var address: String {"\(properties.address.streetAddress)" + " \(properties.address.addressLocality)"}
+    var email1: String {properties.email.getSanitizedElement(at: 0)?.dropFirstWhitespace() ?? ""}
+    var email2: String {properties.email.getSanitizedElement(at: 1)?.dropFirstWhitespace() ?? ""}
+    var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.dropFirstWhitespace() ?? ""}
+    var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.dropFirstWhitespace() ?? ""}
+    var web1: String {properties.web.getSanitizedElement(at: 0)?.shortenUrl() ?? ""}
+    var web2: String {properties.web.getSanitizedElement(at: 1)?.shortenUrl() ?? ""}
+    var targetTypeGroup: TargetTypeGroup {properties.type.group}
+    var targetTypeID: TargetTypeID {properties.type.id}
+    var typeDescription: String {properties.type.typeDescription}
+    var openingHours: [OpeningHour]? {properties.openingHours}
     
     
+    //Used to pass properties of the Target class to PAInfoCell while populating a tableView
     func getInfoContent() -> [InfoSectionCellContent] {
-        
         return [
             InfoSectionCellContent(action: .none, textLine1: typeDescription, textLine2: nil, icon: .type),
             InfoSectionCellContent(action: .address, textLine1: address, textLine2: nil, icon: .address),

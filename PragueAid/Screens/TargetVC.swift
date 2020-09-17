@@ -88,7 +88,7 @@ class TargetVC: UIViewController {
     
     
     @objc private func navButtonTapped(){launchMaps()}
-    @objc private func callButtonTapped(){}
+    @objc private func callButtonTapped(){present(generateTelephoneActionSheet(), animated: true)}
     @objc private func favButtonTapped(){}
     
     
