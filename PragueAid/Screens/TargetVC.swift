@@ -130,23 +130,30 @@ class TargetVC: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         if target.email1 != "" {actionSheet.addAction(UIAlertAction(title: target.email1, style: .default, handler: { action in
-            print(self.target.email1)
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
         }))}
         if target.email2 != "" {actionSheet.addAction(UIAlertAction(title: target.email2, style: .default, handler: { action in
-            print(self.target.email2)
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
         }))}
         return actionSheet
     }
     
     
     private func generateTelephoneActionSheet() -> UIAlertController {
+        print("1:\(target.telephone1.removeAllSpaces())")
+        print("2:\(target.telephone2.removeAllSpaces())")
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         if target.telephone1 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone1, style: .default, handler: { action in
-            print(self.target.telephone1)
+            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
         }))}
         if target.telephone2 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone2, style: .default, handler: { action in
-            print(self.target.telephone2)
+            guard let url = URL(string: "tel://+420\(self.target.telephone2.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
         }))}
         return actionSheet
     }
@@ -156,10 +163,12 @@ class TargetVC: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         if target.web1 != "" {actionSheet.addAction(UIAlertAction(title: target.web1, style: .default, handler: { action in
-            print(self.target.web1)
+            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
+            self.presentSafariVC(with: url)
         }))}
         if target.web2 != "" {actionSheet.addAction(UIAlertAction(title: target.web2, style: .default, handler: { action in
-            print(self.target.web2)
+            guard let url = URL(string: "http://www.\(self.target.web2)") else {return}
+            self.presentSafariVC(with: url)
         }))}
         return actionSheet
     }
@@ -227,7 +236,13 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
             case .email:
                 self.present(generateEmailActionSheet(), animated: true)
             case .phone:
-                self.present(generateTelephoneActionSheet(), animated: true)
+                if self.target.telephone2 == "" {
+                    guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+                    UIApplication.shared.open(url)
+                } else {
+                    self.present(generateTelephoneActionSheet(), animated: true)
+                }
+                
             case .web:
                 self.present(generateWebActionSheet(), animated: true)
             default:
@@ -236,7 +251,8 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         case 1:
             return
         case 2:
-            return
+            let url = URL(string: "http://www.sukl.cz/lekarna/\(self.target.institutionCode)")
+            presentSafariVC(with: url!)
         default:
             return
         }

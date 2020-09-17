@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
     
@@ -25,6 +26,12 @@ extension UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true)
         }
+    }
+    
+    func presentSafariVC(with url: URL){
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemRed
+        present(safariVC, animated: true)
     }
     
 }

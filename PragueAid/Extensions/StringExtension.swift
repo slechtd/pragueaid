@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func dropFirstWhitespace() -> String {
+    func dropFirstSpace() -> String {
         if self.prefix(1) == " " {
             return String(self.dropFirst())
         } else {
@@ -18,12 +18,16 @@ extension String {
         }
     }
     
+    func removeAllSpaces() -> String {
+        return self.replacingOccurrences(of: "\\s*", with: "$1", options: [.regularExpression])
+    }
+    
     
     func shortenUrl() -> String {
-        if self.dropFirstWhitespace().prefix(11) == "http://www." || self.dropFirstWhitespace().prefix(11) == "http//:www."  {
-            return String(self.dropFirstWhitespace().dropFirst(11))
-        } else if self.dropFirstWhitespace().prefix(11) == "https://www." || self.dropFirstWhitespace().prefix(11) == "https//:www."{
-            return String(self.dropFirstWhitespace().dropFirst(12))
+        if self.removeAllSpaces().prefix(11) == "http://www." || self.removeAllSpaces().prefix(11) == "http//:www."  {
+            return String(self.removeAllSpaces().dropFirst(11))
+        } else if self.removeAllSpaces().prefix(11) == "https://www." || self.removeAllSpaces().prefix(11) == "https//:www."{
+            return String(self.removeAllSpaces().dropFirst(12))
         } else {
             return self
         }

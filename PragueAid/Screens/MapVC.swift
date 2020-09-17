@@ -83,6 +83,8 @@ class MapVC: UITabBarController {
     }
     
     private func configureVC(){
+        view.backgroundColor = .systemBackground
+        
         let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
         let filterButtom = UIBarButtonItem(image: UIImage(systemName: SFSymbol.setting.rawValue), style: .plain, target: self, action: #selector(filterButtonPressed))
         
