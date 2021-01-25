@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class TargetVC: UIViewController {
-
+    
     
     let tableView = UITableView(frame: .zero, style: .grouped)
     let reuseIdentifier = "infoCell"
@@ -88,24 +88,22 @@ class TargetVC: UIViewController {
     
     
     @objc private func navButtonTapped(){launchMaps()}
-    @objc private func callButtonTapped(){present(generateTelephoneActionSheet(), animated: true)}
+    @objc private func callButtonTapped(){handlePhoneAction()}
     @objc private func favButtonTapped(){}
     
     
     private func launchMaps(){
         target.mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
-
+    
     
     private func generateCells(){
-        
         for cellContent in target.getInfoContent() {
             if cellContent.textLine1 != "" {
                 let cell = PAInfoCell(cellContent: cellContent)
                 infoCells.append(cell)
             }
         }
-        
         
         if target.getOpenings().isEmpty {
             let cell = PAInfoCell(content: "Unavailable", imageString: SFSymbol.unavailable.rawValue)
@@ -117,7 +115,6 @@ class TargetVC: UIViewController {
                 openingHourCells.append(cell)
             }
         }
-        
         
         if target.targetTypeGroup == .pharmacies {
             let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
@@ -142,9 +139,6 @@ class TargetVC: UIViewController {
     
     
     private func generateTelephoneActionSheet() -> UIAlertController {
-        print("1:\(target.telephone1.removeAllSpaces())")
-        print("2:\(target.telephone2.removeAllSpaces())")
-        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         if target.telephone1 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone1, style: .default, handler: { action in
@@ -172,10 +166,38 @@ class TargetVC: UIViewController {
         }))}
         return actionSheet
     }
+    
+    
+    func handleEmailAction(){
+        if self.target.email2 == "" {
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
+        } else {
+            self.present(generateEmailActionSheet(), animated: true)
+        }
+    }
+    
+    
+    func handlePhoneAction(){
+        if self.target.telephone2 == "" {
+            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
+        } else {
+            self.present(generateTelephoneActionSheet(), animated: true)
+        }
+    }
+    
+    
+    func handleWebAction(){
+        if self.target.web2 == "" {
+            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
+            self.presentSafariVC(with: url)
+        } else {
+            self.present(generateWebActionSheet(), animated: true)
+        }
+    }
+    
 }
-
-
-
 
 //MARK: - extensions
 
@@ -230,24 +252,7 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            switch infoCells[indexPath.row].action {
-            case .address:
-                launchMaps()
-            case .email:
-                self.present(generateEmailActionSheet(), animated: true)
-            case .phone:
-                if self.target.telephone2 == "" {
-                    guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
-                    UIApplication.shared.open(url)
-                } else {
-                    self.present(generateTelephoneActionSheet(), animated: true)
-                }
-                
-            case .web:
-                self.present(generateWebActionSheet(), animated: true)
-            default:
-                break
-            }
+            handleInfoCellsActions(indexPath: indexPath)
         case 1:
             return
         case 2:
@@ -258,8 +263,22 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    func handleInfoCellsActions(indexPath: IndexPath) {
+        switch infoCells[indexPath.row].action {
+        case .address:
+            launchMaps()
+        case .email:
+            handleEmailAction()
+        case .phone:
+            handlePhoneAction()
+        case .web:
+            handleWebAction()
+        default:
+            return
+        }
+    }
     
     
-    
-    
+
 }
+
