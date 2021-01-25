@@ -27,7 +27,7 @@ struct Properties: Codable {
     let address: Address
     let email, telephone, web: [String]
     let openingHours: [OpeningHour]?
-    let type: LocationType
+    let type: TargetType
 
     enum CodingKeys: String, CodingKey {
         case address, email, id, name, telephone, type, web
@@ -73,10 +73,10 @@ enum DayOfWeek: String, Codable {
 }
 
 
-struct LocationType: Codable {
+struct TargetType: Codable {
     let typeDescription: String
-    let group: LocationTypeGroup
-    let id: LocationTypeID
+    let group: TargetTypeGroup
+    let id: TargetTypeID
 
     enum CodingKeys: String, CodingKey {
         case group, id
@@ -85,13 +85,13 @@ struct LocationType: Codable {
 }
 
 
-enum LocationTypeGroup: String, Codable {
+enum TargetTypeGroup: String, Codable {
     case healthCare = "health_care"
     case pharmacies = "pharmacies"
 }
 
 
-enum LocationTypeID: String, Codable {
+enum TargetTypeID: String, Codable {
     case a = "A"
     case l = "L"
     case lo = "LO"

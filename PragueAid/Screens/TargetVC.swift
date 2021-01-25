@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import MapKit
 
 class TargetVC: UIViewController {
-
+    
     
     let tableView = UITableView(frame: .zero, style: .grouped)
     let reuseIdentifier = "infoCell"
     
-    var target: Target?
+    var target: Target!
+    var infoCells: [PAInfoCell] = []
+    var openingHourCells: [PAInfoCell] = []
+    var credentialCells: [PAInfoCell] = []
+    
     var headerView: PATargetHeaderView?
     var footerView: PAFooterView?
     
@@ -33,13 +38,14 @@ class TargetVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureVC()
+        generateCells()
         configureTableView()
     }
     
     
     private func configureVC(){
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = target?.name
+        navigationItem.title = target.name
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissVC))
         navigationItem.rightBarButtonItem = closeButton
     }
@@ -56,18 +62,14 @@ class TargetVC: UIViewController {
         tableView.rowHeight = 50
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        let headerFrame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
-        let footerFrame = CGRect(x: 0, y: 88, width: view.frame.width, height: 50)
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: tableView.rowHeight)
         
-        
-        
-        headerView = PATargetHeaderView(frame: headerFrame)
-        footerView = PAFooterView(frame: footerFrame, message: "Last Updated: \(target!.updatedAt.prefix(7))")
+        headerView = PATargetHeaderView(frame: frame)
+        footerView = PAFooterView(frame: frame, message: "Last Updated: \(target.updatedAt.prefix(7))")
         
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
         
-        headerView?.backgroundColor = .systemPink
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -78,9 +80,123 @@ class TargetVC: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        headerView?.navButton.addTarget(self, action: #selector(navButtonTapped), for: .touchUpInside)
+        headerView?.callButton.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
+        headerView?.favButton.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
     }
     
-
+    
+    @objc private func navButtonTapped(){launchMaps()}
+    @objc private func callButtonTapped(){handlePhoneAction()}
+    @objc private func favButtonTapped(){}
+    
+    
+    private func launchMaps(){
+        target.mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+    }
+    
+    
+    private func generateCells(){
+        for cellContent in target.getInfoContent() {
+            if cellContent.textLine1 != "" {
+                let cell = PAInfoCell(cellContent: cellContent)
+                infoCells.append(cell)
+            }
+        }
+        
+        if target.getOpenings().isEmpty {
+            let cell = PAInfoCell(content: "Unavailable", imageString: SFSymbol.unavailable.rawValue)
+            cell.action = .web
+            openingHourCells.append(cell)
+        } else {
+            for property in target.getOpenings() {
+                let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
+                openingHourCells.append(cell)
+            }
+        }
+        
+        if target.targetTypeGroup == .pharmacies {
+            let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
+            credentialCells.append(cell)
+        }
+    }
+    
+    
+    private func generateEmailActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.email1 != "" {actionSheet.addAction(UIAlertAction(title: target.email1, style: .default, handler: { action in
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
+        }))}
+        if target.email2 != "" {actionSheet.addAction(UIAlertAction(title: target.email2, style: .default, handler: { action in
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
+        }))}
+        return actionSheet
+    }
+    
+    
+    private func generateTelephoneActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.telephone1 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone1, style: .default, handler: { action in
+            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
+        }))}
+        if target.telephone2 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone2, style: .default, handler: { action in
+            guard let url = URL(string: "tel://+420\(self.target.telephone2.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
+        }))}
+        return actionSheet
+    }
+    
+    
+    private func generateWebActionSheet() -> UIAlertController {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if target.web1 != "" {actionSheet.addAction(UIAlertAction(title: target.web1, style: .default, handler: { action in
+            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
+            self.presentSafariVC(with: url)
+        }))}
+        if target.web2 != "" {actionSheet.addAction(UIAlertAction(title: target.web2, style: .default, handler: { action in
+            guard let url = URL(string: "http://www.\(self.target.web2)") else {return}
+            self.presentSafariVC(with: url)
+        }))}
+        return actionSheet
+    }
+    
+    
+    func handleEmailAction(){
+        if self.target.email2 == "" {
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
+        } else {
+            self.present(generateEmailActionSheet(), animated: true)
+        }
+    }
+    
+    
+    func handlePhoneAction(){
+        if self.target.telephone2 == "" {
+            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
+        } else {
+            self.present(generateTelephoneActionSheet(), animated: true)
+        }
+    }
+    
+    
+    func handleWebAction(){
+        if self.target.web2 == "" {
+            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
+            self.presentSafariVC(with: url)
+        } else {
+            self.present(generateWebActionSheet(), animated: true)
+        }
+    }
+    
 }
 
 //MARK: - extensions
@@ -89,18 +205,22 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return TargetTableViewSections.allCases.count
+        if target.targetTypeGroup == .pharmacies {
+            return TargetTableViewSections.allCases.count
+        } else {
+            return TargetTableViewSections.allCases.count - 1
+        }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 5
+            return infoCells.count
         case 1:
-            return target?.openingHours == nil || (target?.openingHours?.isEmpty)! ? 1 : 7
+            return openingHourCells.count
         case 2:
-            return 1
+            return credentialCells.count
         default:
             return 0
         }
@@ -109,18 +229,16 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
-        
         switch indexPath.section {
         case 0:
-            cell.backgroundColor = .systemBlue
+            return infoCells[indexPath.row]
         case 1:
-            cell.backgroundColor = .systemRed
+            return openingHourCells[indexPath.row]
         case 2:
-            cell.backgroundColor = .systemYellow
+            return credentialCells[indexPath.row]
         default:
-            cell.backgroundColor = .systemIndigo
+            break
         }
-        
         return cell
     }
     
@@ -131,7 +249,36 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            handleInfoCellsActions(indexPath: indexPath)
+        case 1:
+            return
+        case 2:
+            let url = URL(string: "http://www.sukl.cz/lekarna/\(self.target.institutionCode)")
+            presentSafariVC(with: url!)
+        default:
+            return
+        }
+    }
+    
+    func handleInfoCellsActions(indexPath: IndexPath) {
+        switch infoCells[indexPath.row].action {
+        case .address:
+            launchMaps()
+        case .email:
+            handleEmailAction()
+        case .phone:
+            handlePhoneAction()
+        case .web:
+            handleWebAction()
+        default:
+            return
+        }
+    }
     
     
-    
+
 }
+

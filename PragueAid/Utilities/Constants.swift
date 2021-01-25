@@ -14,15 +14,29 @@ enum SFSymbol: String {
     case mapFill = "map.fill"
     case safari = "safari"
     case safariFill = "safari.fill"
+    case star = "star"
+    case starFill = "star.fill"
+    case phone = "phone"
     case bandage = "bandage.fill"
+    case unavailable = "exclamationmark"
+    case chevron = "chevron.compact.right"
+    case type = "questionmark"
+    case address = "mappin"
+    case email = "envelope"
+    case web = "globe"
 }
+
 
 
 enum AlertMessages: String {
     case oops = "Oops, something went wrong"
     case noPermissions = "No Location Permissions"
+    case restrictedPermissions = "Restricted Location Permissions"
+    case noUserlocation = "PragueAid has troubles determining your location. Please try again later"
+    case notInPrague = "Looks like you're nowhere near Prague."
     case noPermissionsExplanation = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings."
     case thisFeature = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings."
+    
 }
 
 
