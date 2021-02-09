@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65653C6A25D17E470077A396 /* PABottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653C6925D17E470077A396 /* PABottomSheet.swift */; };
+		65653C6F25D197F10077A396 /* MoreTableViewSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653C6E25D197F10077A396 /* MoreTableViewSections.swift */; };
 		68AF58F124E7D48400C03645 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AF58F024E7D48400C03645 /* AppDelegate.swift */; };
 		68AF58F324E7D48400C03645 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AF58F224E7D48400C03645 /* SceneDelegate.swift */; };
 		68AF58FA24E7D48600C03645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68AF58F924E7D48600C03645 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65653C6925D17E470077A396 /* PABottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PABottomSheet.swift; sourceTree = "<group>"; };
+		65653C6E25D197F10077A396 /* MoreTableViewSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewSections.swift; sourceTree = "<group>"; };
 		68AF58ED24E7D48400C03645 /* PragueAid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PragueAid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AF58F024E7D48400C03645 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68AF58F224E7D48400C03645 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			children = (
 				68DC85FB24EA7D54008BA62F /* PATargetHeaderView.swift */,
 				68DC85FF24EA8F77008BA62F /* PAFooterView.swift */,
+				65653C6925D17E470077A396 /* PABottomSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				68DC860324EA99AF008BA62F /* Target.swift */,
 				68DC860124EA9961008BA62F /* TargetTableViewSections.swift */,
 				68CE637F24F4F20000F62C80 /* InfoSectionCellContent.swift */,
+				65653C6E25D197F10077A396 /* MoreTableViewSections.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,7 +313,9 @@
 				68AF58F324E7D48400C03645 /* SceneDelegate.swift in Sources */,
 				68DC860024EA8F77008BA62F /* PAFooterView.swift in Sources */,
 				68DC85F824EA5946008BA62F /* UIViewControllerExtension.swift in Sources */,
+				65653C6F25D197F10077A396 /* MoreTableViewSections.swift in Sources */,
 				68CE638A24F7B75900F62C80 /* StringExtension.swift in Sources */,
+				65653C6A25D17E470077A396 /* PABottomSheet.swift in Sources */,
 				68DC85EA24E7E5CC008BA62F /* TargetCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

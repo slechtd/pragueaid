@@ -20,10 +20,14 @@ enum SFSymbol: String {
     case bandage = "bandage.fill"
     case unavailable = "exclamationmark"
     case chevron = "chevron.compact.right"
-    case type = "questionmark"
+    case questionmark = "questionmark"
     case address = "mappin"
     case email = "envelope"
     case web = "globe"
+    case walk = "figure.walk"
+    case cross = "cross"
+    case lang = "captions.bubble"
+
 }
 
 

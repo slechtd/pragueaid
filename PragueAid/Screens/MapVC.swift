@@ -10,11 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVC: UITabBarController {
+class MapVC: UITabBarController { //WTF ? proč to není VC? Když dám VC tak blbnou permissions.
     
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
     let regionMeters: Double = 500
+    
     
     var permissionsGranted = false
     var inPrague = true
@@ -106,6 +107,8 @@ class MapVC: UITabBarController {
     
     
     @objc private func filterButtonPressed(){
+
+        
     }
     
     

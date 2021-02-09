@@ -168,16 +168,19 @@ class TargetVC: UIViewController {
     }
     
     
+    //opens URL on a physical device only.
     func handleEmailAction(){
         if self.target.email2 == "" {
             guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
             UIApplication.shared.open(url)
+            print(url)
         } else {
             self.present(generateEmailActionSheet(), animated: true)
         }
     }
+ 
     
-    
+    //opens URL on a physical device only.
     func handlePhoneAction(){
         if self.target.telephone2 == "" {
             guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
