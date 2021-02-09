@@ -22,7 +22,7 @@ extension String {
         return self.replacingOccurrences(of: "\\s*", with: "$1", options: [.regularExpression])
     }
     
-    
+    #warning("nekde nefunguje + to same foun atd")
     func shortenUrl() -> String {
         if self.removeAllSpaces().prefix(11) == "http://www." || self.removeAllSpaces().prefix(11) == "http//:www."  {
             return String(self.removeAllSpaces().dropFirst(11))

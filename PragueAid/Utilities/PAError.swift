@@ -8,10 +8,13 @@
 
 import Foundation
 
+#warning("better string messages")
 enum PAError: String, Error {
     case invalidURL         = "invalidURL"
     case unableToComplete   = "unableToComplete"
     case invalidResponse    = "invalidResponse"
     case invalidData        = "invalidData"
     case unableToDecode     = "unableToDecode"
+    case unableToLoadFilterSettings = "unableToLoadFilterSettings"
+    case unableToSaveFilterSettings = "unableToSaveFilterSettings"
 }

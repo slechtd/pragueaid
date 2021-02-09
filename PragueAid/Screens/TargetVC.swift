@@ -83,13 +83,12 @@ class TargetVC: UIViewController {
         
         headerView?.navButton.addTarget(self, action: #selector(navButtonTapped), for: .touchUpInside)
         headerView?.callButton.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
-        headerView?.favButton.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
     }
     
     
     @objc private func navButtonTapped(){launchMaps()}
     @objc private func callButtonTapped(){handlePhoneAction()}
-    @objc private func favButtonTapped(){}
+
     
     
     private func launchMaps(){
@@ -107,7 +106,6 @@ class TargetVC: UIViewController {
         
         if target.getOpenings().isEmpty {
             let cell = PAInfoCell(content: "Unavailable", imageString: SFSymbol.unavailable.rawValue)
-            cell.action = .web
             openingHourCells.append(cell)
         } else {
             for property in target.getOpenings() {
@@ -180,6 +178,7 @@ class TargetVC: UIViewController {
     }
  
     
+    #warning("zobrazuje Action sheet, i když je jen jeden telefon")
     //opens URL on a physical device only.
     func handlePhoneAction(){
         if self.target.telephone2 == "" {

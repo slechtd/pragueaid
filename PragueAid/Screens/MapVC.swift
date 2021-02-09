@@ -10,7 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapVC: UITabBarController { //WTF ? proč to není VC? Když dám VC tak blbnou permissions.
+#warning("WTF ? proč to není VC? Když dám VC tak blbnou permissions.")
+class MapVC: UITabBarController {
     
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
@@ -85,15 +86,9 @@ class MapVC: UITabBarController { //WTF ? proč to není VC? Když dám VC tak b
     
     private func configureVC(){
         view.backgroundColor = .systemBackground
-        
         let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
-        let filterButtom = UIBarButtonItem(image: UIImage(systemName: SFSymbol.setting.rawValue), style: .plain, target: self, action: #selector(filterButtonPressed))
-        
         centerToUserLocationButton.tintColor = .systemRed
-        filterButtom.tintColor = .systemRed
-        
         navigationItem.rightBarButtonItem = centerToUserLocationButton
-        navigationItem.leftBarButtonItem = filterButtom
     }
     
     
@@ -103,12 +98,6 @@ class MapVC: UITabBarController { //WTF ? proč to není VC? Když dám VC tak b
         } else {
             self.presentAlert(message: .thisFeature, title: .noPermissions)
         }
-    }
-    
-    
-    @objc private func filterButtonPressed(){
-
-        
     }
     
     
@@ -151,6 +140,7 @@ extension MapVC: MKMapViewDelegate {
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            view.tintColor = .systemRed
         }
         return view
     }
@@ -162,6 +152,10 @@ extension MapVC: MKMapViewDelegate {
     }
     
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let target = view.annotation as? Target else { return }
+        presentTargetVC(target: target)
+    }
 }
 
 

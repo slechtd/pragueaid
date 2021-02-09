@@ -6,7 +6,6 @@
 //  Copyright © 2021 Daniel Šlechta. All rights reserved.
 //
 
-#warning("new")
 
 enum MoreTableViewSections: Int, CaseIterable {
     case filter
@@ -73,4 +72,5 @@ enum MoreTableViewMiscCells: Int, CaseIterable {
         case .about: return SFSymbol.questionmark.rawValue
         }
     }
+    
 }

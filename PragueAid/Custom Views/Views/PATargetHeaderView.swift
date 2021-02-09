@@ -13,7 +13,6 @@ class PATargetHeaderView: UIView {
     let stackView = UIStackView()
     let navButton = PAButton(style: .navigate)
     let callButton = PAButton(style: .call)
-    let favButton = PAButton(style: .favorite)
     
     
     override init(frame: CGRect) {
@@ -37,8 +36,6 @@ class PATargetHeaderView: UIView {
         
         stackView.addArrangedSubview(navButton)
         stackView.addArrangedSubview(callButton)
-        stackView.addArrangedSubview(favButton)
-        
         
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),

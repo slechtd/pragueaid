@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+struct FilterSettings: Codable {
+    var walkingDistance: Bool
+    var medicalInstitutions: Bool
+    var benu: Bool
+    var drmax: Bool
+    var teta: Bool
+    var other: Bool
+    
+    func getArray() -> [Bool] {
+        return [walkingDistance, medicalInstitutions, benu, drmax, teta, other]
+    }
+}
+
+

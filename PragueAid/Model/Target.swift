@@ -43,7 +43,7 @@ class Target: NSObject, Codable, MKAnnotation {
     var openingHours: [OpeningHour]? {properties.openingHours}
     
     
-    //Used to pass properties of the Target class to PAInfoCell while populating a tableView
+    //Used to pass properties of the Target class to PAInfoCell when populating a tableView
     func getInfoContent() -> [InfoSectionCellContent] {
         return [
             InfoSectionCellContent(action: .none, textLine1: typeDescription, textLine2: nil, icon: .questionmark),

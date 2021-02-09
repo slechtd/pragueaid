@@ -13,16 +13,21 @@ class MoreVC: UIViewController {
     let tableView = UITableView(frame: .zero, style: .grouped)
     let reuseIdentifier = "infoCell"
     
+    var footerView: PAFooterView?
     var filterCells: [PAInfoCell] = []
     var miscCells: [PAInfoCell] = []
-    
-    var footerView: PAFooterView?
-    
-    
+    var madeChanges = false
     
     override func viewDidLoad() {
         generateCells()
         configureTableView()
+        loadFilterSettingsFromPersistance()
+        
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if madeChanges { saveFilterSettingsToPersistance() }
     }
     
     
@@ -34,7 +39,8 @@ class MoreVC: UIViewController {
         
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: tableView.rowHeight)
         
-        footerView = PAFooterView(frame: frame, message: "test")
+        footerView = PAFooterView(frame: frame, message: "© 2021 Daniel Šlechta")
+        tableView.tableFooterView = footerView
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -45,14 +51,16 @@ class MoreVC: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        
     }
     
     
-    #warning("takhle upravit i bunky na target VC")
     private func generateCells(){
         
         for i in MoreTableViewFilterCells.allCases {
             let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: true)
+            cell.toggle!.addTarget(self, action: #selector(toggleSwitched), for: .allTouchEvents)
             filterCells.append(cell)
         }
         
@@ -63,6 +71,40 @@ class MoreVC: UIViewController {
     }
     
     
+    @objc func toggleSwitched(){
+        madeChanges = true
+    }
+    
+    
+    private func loadFilterSettingsFromPersistance(){
+        PersistanceManager.shared.loadFilterSettingsFromPersistance(completed: {result in
+            switch result {
+            case .success(let loadedFilterSettings):
+                self.setupFilterToggles(settings: loadedFilterSettings)
+            case .failure(let error):
+                self.presentErrorAlert(for: error)
+            }
+        })
+    }
+    
+    
+    private func setupFilterToggles(settings: FilterSettings){
+        for (i, cell) in filterCells.enumerated() {
+            cell.toggle!.setOn(settings.getArray()[i], animated: true)
+        }
+    }
+    
+    
+    private func saveFilterSettingsToPersistance(){
+        let result = PersistanceManager.shared.saveFilterSettingsToPersistance(settings: getCurrentFilterSettings())
+        if result != nil { self.presentErrorAlert(for: result!) }
+    }
+    
+    
+    private func getCurrentFilterSettings() -> FilterSettings {
+        let settings = FilterSettings(walkingDistance: filterCells[0].toggle!.isOn, medicalInstitutions: filterCells[1].toggle!.isOn, benu: filterCells[2].toggle!.isOn, drmax: filterCells[3].toggle!.isOn, teta: filterCells[4].toggle!.isOn, other: filterCells[5].toggle!.isOn)
+        return settings
+    }
     
     
     
@@ -116,9 +158,18 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            return //temp
+            return
         case 1:
-            return //temp
+            switch indexPath.row {
+            case 0:
+                print("Language") //temp
+            case 1:
+                print("Rate")
+            case 2:
+                print("About")
+            default:
+                return
+            }
         default:
             return
         }
