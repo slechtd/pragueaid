@@ -21,32 +21,20 @@ enum MoreTableViewSections: Int, CaseIterable {
 
 
 enum MoreTableViewFilterCells: Int, CaseIterable {
-    case walkingDistance
+    case pharmacies
     case medicalInstitutions
-    case benu
-    case drmax
-    case teta
-    case other
     
     var description: String {
         switch self {
-        case .walkingDistance: return "Walking distance only (1km)"
+        case .pharmacies: return "Pharmacies"
         case .medicalInstitutions: return "Medical institutions"
-        case .benu: return "BENU"
-        case .drmax: return "Dr.Max"
-        case .teta: return "Teta"
-        case .other: return "Other pharmacies"
         }
     }
     
     var image: String {
         switch self {
-        case .walkingDistance: return SFSymbol.walk.rawValue
+        case .pharmacies: return SFSymbol.cross.rawValue
         case .medicalInstitutions: return SFSymbol.bandage.rawValue
-        case .benu: return SFSymbol.cross.rawValue
-        case .drmax: return SFSymbol.cross.rawValue
-        case .teta: return SFSymbol.cross.rawValue
-        case .other: return SFSymbol.cross.rawValue
         }
     }
 }

@@ -23,7 +23,7 @@ class PersistanceManager {
         
         //check if any saved settings exist and if not, pass default ones.
         guard let filterSettingsData = defaults.object(forKey: Keys.filterSettings) as? Data else {
-            let defaultSettings = FilterSettings(walkingDistance: false, medicalInstitutions: false, benu: true, drmax: true, teta: true, other: true)
+            let defaultSettings = FilterSettings(pharmacies: true, medicalInstitutions: false)
             completed(.success(defaultSettings)); return
         }
         //decode saved settings.

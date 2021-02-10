@@ -10,8 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-#warning("WTF ? proč to není VC? Když dám VC tak blbnou permissions.")
-class MapVC: UITabBarController {
+class MapVC: UIViewController {
     
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
@@ -20,7 +19,9 @@ class MapVC: UITabBarController {
     
     var permissionsGranted = false
     var inPrague = true
+    var filterSettings: FilterSettings?
     var fetchedLocations: [Target] = []
+    var filteredLocations: [Target] = []
     
     
     override func viewDidLoad() {
@@ -28,17 +29,48 @@ class MapVC: UITabBarController {
         configureVC()
         checkLocationServices()
         configureMapView()
+        loadFilterSettingsFromPersistance()
         getTargets()
     }
+    
+#warning("updatovat map view delegátem po změně filterů")
+
     
     
     private func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            resolveAuthStatus()
         } else {
             centerOnDefaultLocation()
-            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions) //mozná zbytečné?
+        }
+    }
+    
+    
+    func resolveAuthStatus(){
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                centerOnDefaultLocation()
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
+                centerOnDefaultLocation()
+            case .denied:
+                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+                centerOnDefaultLocation()
+            case .authorizedAlways:
+                permissionsGranted = true
+                setupAccordingToDistanceFromPrague()
+            case .authorizedWhenInUse:
+                permissionsGranted = true
+                setupAccordingToDistanceFromPrague()
+            @unknown default:
+                centerOnDefaultLocation()
+                
+            }
         }
     }
     
@@ -68,7 +100,7 @@ class MapVC: UITabBarController {
             switch result {
             case .success(let targets):
                 self.fetchedLocations = targets.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}
-                DispatchQueue.main.async{self.mapView.addAnnotations(self.fetchedLocations)}
+                self.filterAndAddlocations()
             case .failure(let error):
                 print(error)
             }
@@ -76,12 +108,42 @@ class MapVC: UITabBarController {
     }
     
     
+    private func filterAndAddlocations(){
+        if let filterSettings = filterSettings {
+            filteredLocations = fetchedLocations
+            if filterSettings.pharmacies == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .pharmacies}) }
+            if filterSettings.medicalInstitutions == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .healthCare}) }
+            DispatchQueue.main.async{self.mapView.addAnnotations(self.filteredLocations)}
+        } else {
+            DispatchQueue.main.async{self.mapView.addAnnotations(self.fetchedLocations)}
+        }
+    }
+    
+    
+    private func loadFilterSettingsFromPersistance(){
+        PersistanceManager.shared.loadFilterSettingsFromPersistance(completed: {result in
+            switch result {
+            case .success(let loadedFilterSettings):
+                self.filterSettings = loadedFilterSettings
+            case .failure(let error):
+                self.presentErrorAlert(for: error)
+            }
+        })
+    }
+    
+    
     private func configureMapView(){
         mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
-        mapView.frame = view.bounds
         mapView.constrainToPrague()
+        
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     private func configureVC(){
@@ -153,8 +215,8 @@ extension MapVC: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let target = view.annotation as? Target else { return }
-        presentTargetVC(target: target)
+        //guard let target = view.annotation as? Target else { return }
+        //presentTargetVC(target: target)
     }
 }
 
@@ -163,30 +225,8 @@ extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined:
-                centerOnDefaultLocation()
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
-                centerOnDefaultLocation()
-            case .denied:
-                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-                centerOnDefaultLocation()
-            case .authorizedAlways:
-                permissionsGranted = true
-                setupAccordingToDistanceFromPrague()
-            case .authorizedWhenInUse:
-                permissionsGranted = true
-                setupAccordingToDistanceFromPrague()
-            @unknown default:
-                centerOnDefaultLocation()
-                
-            }
-        }
-        
-        
+        resolveAuthStatus()
+
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print(error.localizedDescription)
         }

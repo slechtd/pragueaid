@@ -37,9 +37,9 @@ class MoreVC: UIViewController {
         tableView.rowHeight = 50
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: tableView.rowHeight)
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 2*tableView.rowHeight)
         
-        footerView = PAFooterView(frame: frame, message: "© 2021 Daniel Šlechta")
+        footerView = PAFooterView(frame: frame, image: UIImage(named: "logoGrayTransparent")!)
         tableView.tableFooterView = footerView
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ class MoreVC: UIViewController {
         })
     }
     
-    
+    #warning("použít .MAP zde i jinde")
     private func setupFilterToggles(settings: FilterSettings){
         for (i, cell) in filterCells.enumerated() {
             cell.toggle!.setOn(settings.getArray()[i], animated: true)
@@ -102,7 +102,7 @@ class MoreVC: UIViewController {
     
     
     private func getCurrentFilterSettings() -> FilterSettings {
-        let settings = FilterSettings(walkingDistance: filterCells[0].toggle!.isOn, medicalInstitutions: filterCells[1].toggle!.isOn, benu: filterCells[2].toggle!.isOn, drmax: filterCells[3].toggle!.isOn, teta: filterCells[4].toggle!.isOn, other: filterCells[5].toggle!.isOn)
+        let settings = FilterSettings(pharmacies: filterCells[0].toggle!.isOn, medicalInstitutions: filterCells[1].toggle!.isOn)
         return settings
     }
     

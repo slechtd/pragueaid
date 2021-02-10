@@ -11,8 +11,10 @@ import UIKit
 class PAFooterView: UIView {
     
     let label = PASecondaryLabel()
+    let imageView = UIImageView()
     
     var message: String?
+    var image: UIImage?
     
     
     override init(frame: CGRect) {
@@ -24,6 +26,13 @@ class PAFooterView: UIView {
         self.init(frame: frame)
         self.message = message
         configureTitleLabel()
+    }
+    
+    
+    convenience init(frame: CGRect, image: UIImage){
+        self.init(frame: frame)
+        self.image = image
+        configureImageView()
     }
     
     
@@ -44,6 +53,23 @@ class PAFooterView: UIView {
             label.heightAnchor.constraint(equalToConstant: self.frame.height / 2),
             label.widthAnchor.constraint(equalToConstant: self.frame.width * 0.9)
         ])
+    }
+    
+    
+    private func configureImageView(){
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFit
+        
+        self.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: self.frame.height / 2),
+            imageView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.9)
+        ])
+        
         
     }
     
