@@ -33,9 +33,10 @@ class MapVC: UIViewController {
         getTargets()
     }
     
-#warning("updatovat map view delegátem po změně filterů")
+    override func viewDidAppear(_ animated: Bool) {
+        reloadAnnotations()
+    }
 
-    
     
     private func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
@@ -129,6 +130,13 @@ class MapVC: UIViewController {
                 self.presentErrorAlert(for: error)
             }
         })
+    }
+    
+    
+    private func reloadAnnotations(){
+        loadFilterSettingsFromPersistance()
+        DispatchQueue.main.async{self.mapView.removeAnnotations(self.fetchedLocations)}
+        filterAndAddlocations()
     }
     
     
@@ -232,3 +240,5 @@ extension MapVC: CLLocationManagerDelegate {
         }
     }
 }
+
+

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MoreVC: UIViewController {
     
     let tableView = UITableView(frame: .zero, style: .grouped)
@@ -17,6 +18,7 @@ class MoreVC: UIViewController {
     var filterCells: [PAInfoCell] = []
     var miscCells: [PAInfoCell] = []
     var madeChanges = false
+    
     
     override func viewDidLoad() {
         generateCells()
@@ -174,6 +176,6 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
             return
         }
     }
-
-    
 }
+
+

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class TargetVC: UIViewController {
     
     
@@ -22,6 +23,7 @@ class TargetVC: UIViewController {
     
     var headerView: PATargetHeaderView?
     var footerView: PAFooterView?
+    
     
     
     init (target: Target) {
