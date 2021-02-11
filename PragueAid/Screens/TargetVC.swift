@@ -180,7 +180,6 @@ class TargetVC: UIViewController {
     }
  
     
-    #warning("zobrazuje Action sheet, i když je jen jeden telefon")
     //opens URL on a physical device only.
     func handlePhoneAction(){
         if self.target.telephone2 == "" {

@@ -18,16 +18,26 @@ extension String {
         }
     }
     
+    
     func removeAllSpaces() -> String {
         return self.replacingOccurrences(of: "\\s*", with: "$1", options: [.regularExpression])
     }
     
-    #warning("nekde nefunguje + to same foun atd")
+    
     func shortenUrl() -> String {
         if self.removeAllSpaces().prefix(11) == "http://www." || self.removeAllSpaces().prefix(11) == "http//:www."  {
             return String(self.removeAllSpaces().dropFirst(11))
-        } else if self.removeAllSpaces().prefix(11) == "https://www." || self.removeAllSpaces().prefix(11) == "https//:www."{
+        } else if self.removeAllSpaces().prefix(12) == "https://www." || self.removeAllSpaces().prefix(12) == "https//:www."{
             return String(self.removeAllSpaces().dropFirst(12))
+        } else {
+            return self
+        }
+    }
+    
+    
+    func shortenPhoneNumber() -> String {
+        if self.dropFirstSpace().prefix(4) == "+420" {
+            return String(self.removeAllSpaces().dropFirst(4))
         } else {
             return self
         }

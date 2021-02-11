@@ -53,6 +53,7 @@ struct OpeningHour: Codable {
     let closes: String
     let dayOfWeek: DayOfWeek
     let opens: String
+    
 
     enum CodingKeys: String, CodingKey {
         case closes, opens

@@ -14,8 +14,6 @@ class MapVC: UIViewController {
     
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
-    let regionMeters: Double = 500
-    
     
     var permissionsGranted = false
     var inPrague = true
@@ -44,7 +42,7 @@ class MapVC: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             resolveAuthStatus()
         } else {
-            centerOnDefaultLocation()
+            mapView.centerOnDefaultLocation()
             self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions) //mozná zbytečné?
         }
     }
@@ -54,43 +52,24 @@ class MapVC: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
-                centerOnDefaultLocation()
+                mapView.centerOnDefaultLocation()
                 locationManager.requestWhenInUseAuthorization()
             case .restricted:
                 self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
-                centerOnDefaultLocation()
+                mapView.centerOnDefaultLocation()
             case .denied:
                 self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-                centerOnDefaultLocation()
+                mapView.centerOnDefaultLocation()
             case .authorizedAlways:
                 permissionsGranted = true
-                setupAccordingToDistanceFromPrague()
+                inPrague = mapView.checkIfInPrague()
             case .authorizedWhenInUse:
                 permissionsGranted = true
-                setupAccordingToDistanceFromPrague()
+                inPrague = mapView.checkIfInPrague()
             @unknown default:
-                centerOnDefaultLocation()
+                mapView.centerOnDefaultLocation()
                 
             }
-        }
-    }
-    
-    
-    private func setupAccordingToDistanceFromPrague(){
-        let prague = CLLocation(latitude: 50.0834225, longitude: 14.4241778)
-        guard let distance = locationManager.location?.distance(from: prague) else {
-            centerOnDefaultLocation()
-            self.presentAlert(message: .noUserlocation)
-            return
-        }
-        if distance < 30000 {
-            centerOnUserLocation()
-            mapView.showsUserLocation = true
-            inPrague = true
-        } else {
-            centerOnDefaultLocation()
-            mapView.showsUserLocation = false
-            inPrague = false
         }
     }
     
@@ -164,7 +143,7 @@ class MapVC: UIViewController {
     
     @objc private func centerToUserLocationButtonPressed(){
         if permissionsGranted {
-            if inPrague { centerOnUserLocation() } else {self.presentAlert(message: .notInPrague)}
+            if inPrague { mapView.centerOnUserLocation() } else {self.presentAlert(message: .notInPrague)}
         } else {
             self.presentAlert(message: .thisFeature, title: .noPermissions)
         }
@@ -175,21 +154,6 @@ class MapVC: UIViewController {
         let destVC = TargetVC(target: target)
         let navControler = UINavigationController(rootViewController: destVC)
         present(navControler, animated: true)
-    }
-    
-    
-    private func centerOnDefaultLocation(){
-        let location = CLLocationCoordinate2D(latitude: 50.0834225, longitude: 14.4241778)
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters*2)
-        mapView.setRegion(region, animated: true)
-    }
-    
-    
-    private func centerOnUserLocation(){
-        if let userLocation = locationManager.location?.coordinate {
-            let userRegion = MKCoordinateRegion.init(center: userLocation, latitudinalMeters: regionMeters, longitudinalMeters: regionMeters)
-            mapView.setRegion(userRegion, animated: true)
-        }
     }
     
 }
@@ -223,8 +187,8 @@ extension MapVC: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //guard let target = view.annotation as? Target else { return }
-        //presentTargetVC(target: target)
+        guard let target = view.annotation as? Target else { return }
+        presentTargetVC(target: target)
     }
 }
 

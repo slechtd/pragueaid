@@ -14,7 +14,6 @@ class MoreVC: UIViewController {
     let tableView = UITableView(frame: .zero, style: .grouped)
     let reuseIdentifier = "infoCell"
     
-    var footerView: PAFooterView?
     var filterCells: [PAInfoCell] = []
     var miscCells: [PAInfoCell] = []
     var madeChanges = false
@@ -38,11 +37,6 @@ class MoreVC: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 50
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
-        
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 2*tableView.rowHeight)
-        
-        footerView = PAFooterView(frame: frame, image: UIImage(named: "logoGrayTransparent")!)
-        tableView.tableFooterView = footerView
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)

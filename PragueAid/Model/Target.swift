@@ -33,8 +33,8 @@ class Target: NSObject, Codable, MKAnnotation {
     var address: String {"\(properties.address.streetAddress)" + " \(properties.address.addressLocality)"}
     var email1: String {properties.email.getSanitizedElement(at: 0)?.removeAllSpaces() ?? ""}
     var email2: String {properties.email.getSanitizedElement(at: 1)?.removeAllSpaces() ?? ""}
-    var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.dropFirstSpace() ?? ""}
-    var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.dropFirstSpace() ?? ""}
+    var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.shortenPhoneNumber() ?? ""}
+    var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.shortenPhoneNumber() ?? ""}
     var web1: String {properties.web.getSanitizedElement(at: 0)?.shortenUrl() ?? ""}
     var web2: String {properties.web.getSanitizedElement(at: 1)?.shortenUrl() ?? ""}
     var targetTypeGroup: TargetTypeGroup {properties.type.group}
@@ -49,7 +49,7 @@ class Target: NSObject, Codable, MKAnnotation {
             InfoSectionCellContent(action: .none, textLine1: typeDescription, textLine2: nil, icon: .questionmark),
             InfoSectionCellContent(action: .address, textLine1: address, textLine2: nil, icon: .address),
             InfoSectionCellContent(action: .email, textLine1: email1, textLine2: email2, icon: .email),
-            InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2, icon: .phone),
+            InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2.dropFirstSpace(), icon: .phone),
             InfoSectionCellContent(action: .web, textLine1: web1, textLine2: web2, icon: .web)
         ]
     }

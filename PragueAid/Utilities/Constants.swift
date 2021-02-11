@@ -7,16 +7,11 @@
 //
 
 
-#warning("smazat, co neni použito")
 enum SFSymbol: String {
     case nav            = "location"
-    case setting        = "slider.horizontal.3"
     case map            = "map"
     case mapFill        = "map.fill"
-    case safari         = "safari"
-    case safariFill     = "safari.fill"
     case star           = "star"
-    case starFill       = "star.fill"
     case phone          = "phone"
     case bandage        = "bandage.fill"
     case unavailable    = "exclamationmark"
@@ -25,7 +20,6 @@ enum SFSymbol: String {
     case address        = "mappin"
     case email          = "envelope"
     case web            = "globe"
-    case walk           = "figure.walk"
     case cross          = "cross"
     case lang           = "captions.bubble"
 
