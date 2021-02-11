@@ -8,15 +8,27 @@
 
 import UIKit
 
-class PATargetHeaderView: UIView {
+
+enum PAButtonViewStyle {
+    case target
+    case about
+}
+
+
+class PAButtonView: UIView {
     
     let stackView = UIStackView()
-    let navButton = PAButton(style: .navigate)
-    let callButton = PAButton(style: .call)
+    
+    var leftButton: PAButton?
+    var rightButton: PAButton?
+    
+    var style: PAButtonViewStyle?
     
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, style: PAButtonViewStyle) {
         super.init(frame: frame)
+        self.style = style
+        
         configureStackView()
     }
     
@@ -34,14 +46,26 @@ class PATargetHeaderView: UIView {
         stackView.spacing = 5
         self.addSubview(stackView)
         
-        stackView.addArrangedSubview(navButton)
-        stackView.addArrangedSubview(callButton)
+        switch style {
+        case .target:
+            leftButton = PAButton(style: .navigate)
+            rightButton = PAButton(style: .call)
+            stackView.addArrangedSubview(leftButton!)
+            stackView.addArrangedSubview(rightButton!)
+        case .about:
+            leftButton = PAButton(style: .github)
+            rightButton = PAButton(style: .linkedIn)
+            stackView.addArrangedSubview(leftButton!)
+            stackView.addArrangedSubview(rightButton!)
+        case .none:
+            print("Error: No PAButtonViewStyle")
+        }
         
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             stackView.heightAnchor.constraint(equalToConstant: self.frame.height),
-            stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.95)
+            stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.90)
         ])
     }
     

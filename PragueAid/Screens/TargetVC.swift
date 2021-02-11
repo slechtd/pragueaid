@@ -13,7 +13,7 @@ import MapKit
 class TargetVC: UIViewController {
     
     
-    let tableView = UITableView(frame: .zero, style: .grouped)
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let reuseIdentifier = "infoCell"
     
     var target: Target!
@@ -21,11 +21,10 @@ class TargetVC: UIViewController {
     var openingHourCells: [PAInfoCell] = []
     var credentialCells: [PAInfoCell] = []
     
-    var headerView: PATargetHeaderView?
+    var headerView: PAButtonView?
     var footerView: PAFooterView?
     
-    
-    
+        
     init (target: Target) {
         super.init(nibName: nil, bundle: nil)
         self.target = target
@@ -66,7 +65,8 @@ class TargetVC: UIViewController {
         
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: tableView.rowHeight)
         
-        headerView = PATargetHeaderView(frame: frame)
+        headerView = PAButtonView(frame: frame, style: .target)
+        headerView?.style = .target
         footerView = PAFooterView(frame: frame, message: "Last Updated: \(target.updatedAt.prefix(7))")
         
         tableView.tableHeaderView = headerView
@@ -83,8 +83,8 @@ class TargetVC: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        headerView?.navButton.addTarget(self, action: #selector(navButtonTapped), for: .touchUpInside)
-        headerView?.callButton.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
+        headerView?.leftButton!.addTarget(self, action: #selector(navButtonTapped), for: .touchUpInside)
+        headerView?.rightButton!.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
     }
     
     

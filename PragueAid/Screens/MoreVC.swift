@@ -11,7 +11,7 @@ import UIKit
 
 class MoreVC: UIViewController {
     
-    let tableView = UITableView(frame: .zero, style: .grouped)
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let reuseIdentifier = "infoCell"
     
     var filterCells: [PAInfoCell] = []
@@ -60,6 +60,7 @@ class MoreVC: UIViewController {
             filterCells.append(cell)
         }
         
+        
         for i in MoreTableViewMiscCells.allCases {
             let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: false)
             miscCells.append(cell)
@@ -101,9 +102,6 @@ class MoreVC: UIViewController {
         let settings = FilterSettings(pharmacies: filterCells[0].toggle!.isOn, medicalInstitutions: filterCells[1].toggle!.isOn)
         return settings
     }
-    
-    
-    
 
 }
 
@@ -160,9 +158,9 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
             case 0:
                 print("Language") //temp
             case 1:
-                print("Rate")
+                presentAlert(message: AlertMessages.cannotRate, title: AlertMessages.heart)
             case 2:
-                print("About")
+                present(UINavigationController(rootViewController: AboutVC()), animated: true)
             default:
                 return
             }

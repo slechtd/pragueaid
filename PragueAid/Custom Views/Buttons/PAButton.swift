@@ -12,12 +12,14 @@ import UIKit
 enum PAButtonStyle {
     case navigate
     case call
-    case favorite
+    case github
+    case linkedIn
 }
 
 
 class PAButton: UIButton {
     
+    let padding: CGFloat = 13
     var style: PAButtonStyle?
     
     override init(frame: CGRect) {
@@ -39,18 +41,21 @@ class PAButton: UIButton {
     
     private func generalConfig(){
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 15
+        layer.cornerRadius = 10
         titleLabel?.font   = UIFont.preferredFont(forTextStyle: .headline)
         backgroundColor = .secondarySystemGroupedBackground
         tintColor = .systemRed
+        
         
         switch style {
         case .navigate:
             configureNavigate()
         case .call:
             configureCall()
-        case .favorite:
-            configureFavorite()
+        case .github:
+            configureGitHub()
+        case .linkedIn:
+            configureLinkedIn()
         case .none:
             print("Error: No PAButtonStyle")
         }
@@ -68,8 +73,30 @@ class PAButton: UIButton {
     }
     
     
-    private func configureFavorite(){
-        self.setImage(UIImage(systemName: SFSymbol.star.rawValue), for: .normal)
+    private func configureGitHub(){
+        configureConstraints()
+        self.setImage(UIImage(named: "gitHub"), for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
     }
+    
+    
+    private func configureLinkedIn(){
+        configureConstraints()
+        self.setImage(UIImage(named: "linkedIn"), for: .normal)
+        self.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    
+    //Used with custom images (for re-sizing purposes) as opposed to SFsymbols (those juse get messed up by manual constraints).
+    private func configureConstraints(){
+        imageView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView!.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            imageView!.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            imageView!.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            imageView!.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding)
+        ])
+    }
+    
     
 }
