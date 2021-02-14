@@ -11,7 +11,7 @@
 
 //MARK: - AlertMessages
 
-"oops" = "Ups, něco se pokazilo";
+"oops" = "Ups, něco se pokazilo.";
 "heart" = "❤️";
 "noPermissions" = "Přístup k poloze není povolen";
 "restrictedPermissions" = "Omezená polohová povolení";
@@ -37,6 +37,16 @@
 "unavailable" = "Není k dispozici";
 "pharmacyCredentials" = "PROVĚŘENÍ LÉKÁRNY:";
 "lastUpdated" = "Naposledy aktualizováno:";
+//Target:
+"closed" = "Zavřeno";
+"monday" = "Ponděli";
+"tuesday" = "Úterý";
+"wednesday" = "Středa";
+"thursday" = "Čtvrtek";
+"friday" = "Pátek";
+"saturday" = "Sobota";
+"sunday" = "Neděle";
+"publicHolidays" = "Svátky";
 //MoreVC:
 "filterLocations" = "FILTROVAT MÍSTA:";
 "pharmacies" = "Lékárny";

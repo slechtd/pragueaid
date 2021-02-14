@@ -54,6 +54,16 @@ enum otherStrings: String {
     case unavailable = "unavailable"
     case pharmacyCredentials = "pharmacyCredentials"
     case lastUpdated = "lastUpdated"
+    //Target:
+    case closed = "closed"
+    case monday = "monday"
+    case tuesday = "tuesday"
+    case wednesday = "wednesday"
+    case thursday = "thursday"
+    case friday = "friday"
+    case saturday = "saturday"
+    case sunday = "sunday"
+    case publicHolidays = "publicHolidays"
     //MoreVC:
     case filterLocations = "filterLocations"
     case pharmacies = "pharmacies"

@@ -59,26 +59,26 @@ class Target: NSObject, Codable, MKAnnotation {
         guard let openingHours = openingHours else {return []}
         guard !openingHours.isEmpty else { return [] }
         
-        var result: [String] = ["Monday: Closed", "Tuesday: Closed", "Wednesday: Closed", "Thursday: Closed", "Friday: Closed", "Saturday: Closed", "Sunday: Closed", "Public Holidays: Closed", ]
+        var result: [String] = ["\(otherStrings.monday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.tuesday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.wednesday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.thursday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.friday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.saturday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.sunday.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", "\(otherStrings.publicHolidays.rawValue.localized()): \(otherStrings.closed.rawValue.localized())", ]
         
         for i in openingHours {
             switch i.dayOfWeek {
             case .monday:
-                result[0] = "Monday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[0] = "\(otherStrings.monday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .tuesday:
-                result[1] = "Tuesday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[1] = "\(otherStrings.tuesday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .wednesday:
-                result[2] = "Wednesday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[2] = "\(otherStrings.wednesday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .thursday:
-                result[3] = "Thursday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[3] = "\(otherStrings.thursday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .friday:
-                result[4] = "Friday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[4] = "\(otherStrings.friday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .saturday:
-                result[5] = "Saturday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[5] = "\(otherStrings.saturday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .sunday:
-                result[6] = "Sunday: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[6] = "\(otherStrings.sunday.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             case .publicHolidays:
-                result[7] = "Public Holidays: " + "\(i.opens)" + "-" + "\(i.closes)"
+                result[7] = "\(otherStrings.publicHolidays.rawValue.localized()): " + "\(i.opens)" + "-" + "\(i.closes)"
             }
         }
         return result

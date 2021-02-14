@@ -11,7 +11,7 @@
 
 //MARK: - AlertMessages
 
-"oops" = "Oops, something went wrong";
+"oops" = "Oops, something went wrong.";
 "heart" = "❤️";
 "noPermissions" = "No Location Permissions";
 "restrictedPermissions" = "Restricted Location Permissions";
@@ -37,6 +37,16 @@
 "unavailable" = "Unavailable";
 "pharmacyCredentials" = "PHARMACY CREDENTIALS:";
 "lastUpdated" = "Last updated:";
+//Target
+"closed" = "Closed";
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+"publicHolidays" = "PublicHolidays";
 //MoreVC:
 "filterLocations" = "FILTER LOCATIONS:";
 "pharmacies" = "Pharmacies";

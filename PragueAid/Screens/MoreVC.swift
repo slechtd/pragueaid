@@ -156,7 +156,7 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
         case 1:
             switch indexPath.row {
             case 0:
-                print("Language") //temp
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             case 1:
                 presentAlert(message: AlertMessages.cannotRate, title: AlertMessages.heart)
             case 2:
