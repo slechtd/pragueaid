@@ -25,7 +25,7 @@ class AboutVC: UIViewController {
     
     private func configureVC() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = "About this app"
+        navigationItem.title = otherStrings.aboutThisApp.rawValue.localized()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissTapped))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -89,7 +89,7 @@ extension AboutVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
-        cell.textLabel?.text = CustomTexts.about.rawValue
+        cell.textLabel?.text = otherStrings.about.rawValue.localized()
         //cell.textLabel?.lineBreakMode = .byTruncatingMiddle
         cell.textLabel?.numberOfLines = 10
         return cell

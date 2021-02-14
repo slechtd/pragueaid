@@ -29,6 +29,7 @@ class MapVC: UIViewController {
         configureMapView()
         loadFilterSettingsFromPersistance()
         getTargets()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

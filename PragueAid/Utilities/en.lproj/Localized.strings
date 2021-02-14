@@ -5,3 +5,43 @@
   Created by Daniel Šlechta on 13.02.2021.
   Copyright © 2021 Daniel Šlechta. All rights reserved.
 */
+
+
+//ENGLISH
+
+//MARK: - AlertMessages
+
+"oops" = "Oops, something went wrong";
+"heart" = "❤️";
+"noPermissions" = "No Location Permissions";
+"restrictedPermissions" = "Restricted Location Permissions";
+"noUserlocation" = "PragueAid has troubles determining your location. Please try again later";
+"notInPrague" = "Looks like you're nowhere near Prague.";
+"noPermissionsExplanation" = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
+"thisFeature" = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
+"cannotRate" = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
+
+
+//MARK: - otherStrings
+
+//titles and navigation:
+"search" = "Search";
+"more" = "More";
+"searchPlaces" = "Search Places";
+//other:
+"about" = "Hi there!\nThank you for checking out PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+//TargetVC:
+"cancel" = "Cancel";
+"information" = "INFORMATION:";
+"openingHours" = "OPENING HOURS:";
+"unavailable" = "Unavailable";
+"pharmacyCredentials" = "PHARMACY CREDENTIALS:";
+"lastUpdated" = "Last updated:";
+//MoreVC:
+"filterLocations" = "FILTER LOCATIONS:";
+"pharmacies" = "Pharmacies";
+"medicalInstitutions" = "Medical institutions";
+"miscellaneous" = "MISCELLANEOUS:";
+"appLanguage" = "App language";
+"rateThisApp" = "Rate this app";
+"aboutThisApp"  = "About this app";

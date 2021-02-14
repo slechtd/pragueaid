@@ -7,4 +7,41 @@
 */
 
 
-"test" = "testEN"
+//CZECH
+
+//MARK: - AlertMessages
+
+"oops" = "Ups, něco se pokazilo";
+"heart" = "❤️";
+"noPermissions" = "Přístup k poloze není povolen";
+"restrictedPermissions" = "Omezená polohová povolení";
+"noUserlocation" = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
+"notInPrague" = "Zdá se, že aktuálně nejste v Praze.";
+"noPermissionsExplanation" = "PragueAid polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
+"thisFeature" = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
+"cannotRate" = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
+
+
+//MARK: - otherStrings
+
+//titles and navigation:
+"search" = "Vyhledat";
+"more" = "Další";
+"searchPlaces" = "Vyhledat místa";
+//other:
+"about" = "Ahoj!\nDíky za používání PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+//TargetVC:
+"cancel" = "Zrušit";
+"information" = "INFORMACE:";
+"openingHours" = "OTEVÍRACÍ DOBA:";
+"unavailable" = "Není k dispozici";
+"pharmacyCredentials" = "PROVĚŘENÍ LÉKÁRNY:";
+"lastUpdated" = "Naposledy aktualizováno:";
+//MoreVC:
+"filterLocations" = "FILTROVAT MÍSTA:";
+"pharmacies" = "Lékárny";
+"medicalInstitutions" = "Zdravotní zařízení";
+"miscellaneous" = "JINÉ:";
+"appLanguage" = "Jazyk aplikace";
+"rateThisApp" = "Hodnotit aplikaci";
+"aboutThisApp"  = "O aplikaci";

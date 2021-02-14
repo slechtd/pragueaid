@@ -10,6 +10,12 @@ import Foundation
 
 extension String {
     
+    
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: "Localized", bundle: .main, value: self, comment: self)
+    }
+    
+    
     func dropFirstSpace() -> String {
         if self.prefix(1) == " " {
             return String(self.dropFirst())

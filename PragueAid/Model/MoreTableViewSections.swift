@@ -13,8 +13,8 @@ enum MoreTableViewSections: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .filter: return "Filter Locations:"
-        case .misc: return "Miscellaneous:"
+        case .filter: return otherStrings.filterLocations.rawValue.localized()
+        case .misc: return otherStrings.miscellaneous.rawValue.localized()
         }
     }
 }
@@ -26,8 +26,8 @@ enum MoreTableViewFilterCells: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .pharmacies: return "Pharmacies"
-        case .medicalInstitutions: return "Medical institutions"
+        case .pharmacies: return otherStrings.pharmacies.rawValue.localized()
+        case .medicalInstitutions: return otherStrings.medicalInstitutions.rawValue.localized()
         }
     }
     
@@ -47,9 +47,9 @@ enum MoreTableViewMiscCells: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .lang: return "App language"
-        case .rate: return "Rate this app"
-        case .about: return "About this app"
+        case .lang: return otherStrings.appLanguage.rawValue.localized()
+        case .rate: return otherStrings.rateThisApp.rawValue.localized()
+        case .about: return otherStrings.aboutThisApp.rawValue.localized()
         }
     }
     

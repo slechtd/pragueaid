@@ -13,7 +13,7 @@ extension UIViewController {
     
     func presentErrorAlert(for error: PAError, title: AlertMessages = AlertMessages.oops){
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: title.rawValue, message: error.rawValue, preferredStyle: .alert)
+            let alert = UIAlertController(title: title.rawValue.localized(), message: error.rawValue.localized(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true)
         }
@@ -22,7 +22,7 @@ extension UIViewController {
     
     func presentAlert(message: AlertMessages, title: AlertMessages = AlertMessages.oops){
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: title.rawValue, message: message.rawValue, preferredStyle: .alert)
+            let alert = UIAlertController(title: title.rawValue.localized(), message: message.rawValue.localized(), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true)
         }

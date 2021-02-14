@@ -27,23 +27,40 @@ enum SFSymbol: String {
 
 
 enum AlertMessages: String {
-    case oops                       = "Oops, something went wrong"
-    case heart                      = "❤️"
-    case noPermissions              = "No Location Permissions"
-    case restrictedPermissions      = "Restricted Location Permissions"
-    case noUserlocation             = "PragueAid has troubles determining your location. Please try again later"
-    case notInPrague                = "Looks like you're nowhere near Prague."
-    case noPermissionsExplanation   = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings."
-    case thisFeature                = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings."
-    case cannotRate                 = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!"
+    case oops                       = "oops"
+    case heart                      = "heart"
+    case noPermissions              = "noPermissions"
+    case restrictedPermissions      = "restrictedPermissions"
+    case noUserlocation             = "noUserlocation"
+    case notInPrague                = "notInPrague"
+    case noPermissionsExplanation   = "noPermissionsExplanation"
+    case thisFeature                = "thisFeature"
+    case cannotRate                 = "cannotRate"
     
 }
 
 
-enum CustomTexts: String {
-    case about = "Hi there!\nThank you for checking out PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta"
+enum otherStrings: String {
+    //titles and navigation:
+    case search = "search"
+    case more = "more"
+    case searchPlaces = "searchPlaces"
+    //other:
+    case about = "about"
+    //TargetVC:
+    case cancel = "cancel"
+    case information = "information"
+    case openingHours = "openingHours"
+    case unavailable = "unavailable"
+    case pharmacyCredentials = "pharmacyCredentials"
+    case lastUpdated = "lastUpdated"
+    //MoreVC:
+    case filterLocations = "filterLocations"
+    case pharmacies = "pharmacies"
+    case medicalInstitutions = "medicalInstitutions"
+    case miscellaneous = "miscellaneous"
+    case appLanguage = "appLanguage"
+    case rateThisApp = "rateThisApp"
+    case aboutThisApp = "aboutThisApp"
 }
-
-
-
 
