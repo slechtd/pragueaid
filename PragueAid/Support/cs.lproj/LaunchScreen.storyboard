@@ -41,7 +41,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoTransparent" width="256" height="256"/>
+        <image name="logoTransparent" width="1124" height="1044"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
