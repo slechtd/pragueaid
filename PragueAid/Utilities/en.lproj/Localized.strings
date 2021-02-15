@@ -13,6 +13,7 @@
 
 "oops" = "Oops, something went wrong.";
 "heart" = "❤️";
+"connection" = "📶";
 "noPermissions" = "No Location Permissions";
 "restrictedPermissions" = "Restricted Location Permissions";
 "noUserlocation" = "PragueAid has troubles determining your location. Please try again later";
@@ -20,6 +21,7 @@
 "noPermissionsExplanation" = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
 "thisFeature" = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
 "cannotRate" = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
+"noInternet" = "Prague Aid needs internet connection to load locations. Please connect to wifi/celular and try again.";
 
 
 //MARK: - otherStrings
@@ -54,4 +56,16 @@
 "miscellaneous" = "MISCELLANEOUS:";
 "appLanguage" = "App language";
 "rateThisApp" = "Rate this app";
-"aboutThisApp"  = "About this app";
+"aboutThisApp" = "About this app";
+
+//MARK: - PAError
+
+"invalidURL" = "Please try again later.";
+"unableToComplete" = "Please try again later.";
+"invalidResponse" = "Please try again later.";
+"invalidData" = "Please try again later.";
+"unableToDecode" = "Please try again later.";
+"unableToLoadFilterSettings" = "Please try again later.";
+"unableToSaveFilterSettings" = "Please try again later.";
+"unableToLoadTargets" = "Please try again later.";
+"unableToSaveTargets" = "Please try again later.";

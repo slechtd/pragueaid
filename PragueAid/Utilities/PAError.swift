@@ -8,12 +8,15 @@
 
 import Foundation
 
+//raw values not meant to be used as literals - see Localized.strings
 enum PAError: String, Error {
-    case invalidURL                     = "Invalid URL."
-    case unableToComplete               = "Unable to complete request."
-    case invalidResponse                = "Invalid response."
-    case invalidData                    = "Invalid data in response."
-    case unableToDecode                 = "Unable to decode data in response."
-    case unableToLoadFilterSettings     = "Unable to load filter settings."
-    case unableToSaveFilterSettings     = "Unable to save filter settings."
+    case invalidURL                     = "invalidURL"
+    case unableToComplete               = "unableToComplete"
+    case invalidResponse                = "invalidResponse"
+    case invalidData                    = "invalidData"
+    case unableToDecode                 = "unableToDecode"
+    case unableToLoadFilterSettings     = "unableToLoadFilterSettings"
+    case unableToSaveFilterSettings     = "unableToSaveFilterSettings"
+    case unableToLoadTargets            = "unableToLoadTargets"
+    case unableToSaveTargets            = "unableToSaveTargets"
 }

@@ -29,13 +29,12 @@ class MapVC: UIViewController {
         configureMapView()
         loadFilterSettingsFromPersistance()
         getTargets()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         reloadAnnotations()
     }
-
+    
     
     private func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
@@ -76,16 +75,53 @@ class MapVC: UIViewController {
     
     
     private func getTargets(){
+        if NetworkMonitor.shared.isCoonnected == true {
+            downloadTargets()
+            filterAndAddlocations()
+        } else {
+            loadTargetsFromPersistance()
+            if !fetchedLocations.isEmpty {
+                filterAndAddlocations()
+            } else {
+                self.presentAlert(message: AlertMessages.noInternet, title: AlertMessages.connection)
+            }
+        }
+    }
+    
+    
+    private func downloadTargets(){
+        showLoadingView()
         NetworkManager.shared.getTargets() { [weak self] result in
             guard let self = self else {return}
             switch result {
             case .success(let targets):
                 self.fetchedLocations = targets.features.filter{$0.geometryType == "Point" && $0.country == "Česko"}
-                self.filterAndAddlocations()
+                self.saveTargetsToPersistance()
+                self.reloadAnnotations()
+                self.dismissLoadingView()
             case .failure(let error):
-                print(error)
+                self.presentErrorAlert(for: error)
             }
         }
+    }
+    
+    
+    private func saveTargetsToPersistance(){
+        let result = PersistanceManager.shared.saveTargetsToPersistance(targets: fetchedLocations)
+        if result != nil { self.presentErrorAlert(for: result!) }
+    }
+    
+    
+    private func loadTargetsFromPersistance(){
+        PersistanceManager.shared.loadTargetsFromPersistance(completed: {result in
+            switch result {
+            case .success(let loadedTargets):
+                self.fetchedLocations = loadedTargets
+                self.reloadAnnotations()
+            case .failure(let error):
+                self.presentErrorAlert(for: error)
+            }
+        })
     }
     
     
@@ -199,7 +235,7 @@ extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         resolveAuthStatus()
-
+        
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print(error.localizedDescription)
         }

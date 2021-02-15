@@ -25,10 +25,11 @@ enum SFSymbol: String {
 
 }
 
-
+//raw values not meant to be used as literals - see Localized.strings
 enum AlertMessages: String {
     case oops                       = "oops"
     case heart                      = "heart"
+    case connection                 = "connection"
     case noPermissions              = "noPermissions"
     case restrictedPermissions      = "restrictedPermissions"
     case noUserlocation             = "noUserlocation"
@@ -36,10 +37,11 @@ enum AlertMessages: String {
     case noPermissionsExplanation   = "noPermissionsExplanation"
     case thisFeature                = "thisFeature"
     case cannotRate                 = "cannotRate"
+    case noInternet                 = "noInternet"
     
 }
 
-
+//raw values not meant to be used as literals - see Localized.strings
 enum otherStrings: String {
     //titles and navigation:
     case search = "search"

@@ -10,6 +10,7 @@ import Foundation
 
 enum Keys {
     static let filterSettings = "filterSettings"
+    static let targets = "targets"
 }
 
 
@@ -45,6 +46,33 @@ class PersistanceManager {
             return nil
         } catch {
             return .unableToSaveFilterSettings
+        }
+    }
+    
+    
+    func loadTargetsFromPersistance(completed: @escaping(Result<[Target], PAError>) -> Void) {
+        
+        guard let targetData = defaults.object(forKey: Keys.targets) as? Data else {
+            completed(.success([])); return
+        }
+        do {
+            let decoder = JSONDecoder()
+            let retrievedTargets = try decoder.decode([Target].self, from: targetData)
+            completed(.success(retrievedTargets))
+        } catch {
+            completed(.failure(.unableToLoadTargets))
+        }
+    }
+    
+    
+    func saveTargetsToPersistance(targets: [Target]) -> PAError? {
+        do {
+            let encoder = JSONEncoder()
+            let encodedSettings = try encoder.encode(targets)
+            defaults.set(encodedSettings, forKey: Keys.targets)
+            return nil
+        } catch {
+            return .unableToSaveTargets
         }
     }
     

@@ -9,6 +9,8 @@
 import UIKit
 import SafariServices
 
+fileprivate var containerView: UIView! //test
+
 extension UIViewController {
     
     func presentErrorAlert(for error: PAError, title: AlertMessages = AlertMessages.oops){
@@ -28,11 +30,42 @@ extension UIViewController {
         }
     }
     
+    
     func presentSafariVC(with url: URL){
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemRed
         present(safariVC, animated: true)
     }
     
+    
+    func showLoadingView(){ //test
+        containerView = UIView(frame: view.bounds)
+        view.addSubview(containerView)
+        
+        containerView.backgroundColor   = .systemBackground
+        containerView.alpha             = 0
+        
+        UIView.animate(withDuration: 0.25) {containerView.alpha = 0.8}
+        
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        containerView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
+    }
+    
+    
+    func dismissLoadingView(){
+        DispatchQueue.main.async {
+            containerView.removeFromSuperview()
+            containerView = nil
+        }
+    }
 }
 

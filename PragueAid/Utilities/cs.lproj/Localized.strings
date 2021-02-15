@@ -13,6 +13,7 @@
 
 "oops" = "Ups, něco se pokazilo.";
 "heart" = "❤️";
+"connection" = "📶";
 "noPermissions" = "Přístup k poloze není povolen";
 "restrictedPermissions" = "Omezená polohová povolení";
 "noUserlocation" = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
@@ -20,6 +21,7 @@
 "noPermissionsExplanation" = "PragueAid polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
 "thisFeature" = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
 "cannotRate" = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
+"noInternet" = "Prague Aid potřebuje internetové připojení pro načtení míst. Prosím, připojte se k wifi/fatům a zkuste operaci znovu.";
 
 
 //MARK: - otherStrings
@@ -55,3 +57,15 @@
 "appLanguage" = "Jazyk aplikace";
 "rateThisApp" = "Hodnotit aplikaci";
 "aboutThisApp"  = "O aplikaci";
+
+//MARK: - PAError
+
+"invalidURL" = "Prosím zkuste to znovu později.";
+"unableToComplete" = "Prosím zkuste to znovu později.";
+"invalidResponse" = "Prosím zkuste to znovu později.";
+"invalidData" = "Prosím zkuste to znovu později.";
+"unableToDecode" = "Prosím zkuste to znovu později.";
+"unableToLoadFilterSettings" = "Prosím zkuste to znovu později.";
+"unableToSaveFilterSettings" = "Prosím zkuste to znovu později.";
+"unableToLoadTargets" = "Prosím zkuste to znovu později.";
+"unableToSaveTargets" = "Prosím zkuste to znovu později.";
