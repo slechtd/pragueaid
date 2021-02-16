@@ -85,7 +85,7 @@ struct TargetType: Codable {
     }
 }
 
-
+//Localized in Localized.strings
 enum TargetTypeGroup: String, Codable {
     case healthCare = "health_care"
     case pharmacies = "pharmacies"

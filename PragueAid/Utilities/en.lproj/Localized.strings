@@ -14,6 +14,7 @@
 "oops" = "Oops, something went wrong.";
 "heart" = "❤️";
 "connection" = "📶";
+"magnificationGlass" = "🔎";
 "noPermissions" = "No Location Permissions";
 "restrictedPermissions" = "Restricted Location Permissions";
 "noUserlocation" = "PragueAid has troubles determining your location. Please try again later";
@@ -22,7 +23,13 @@
 "thisFeature" = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
 "cannotRate" = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
 "noInternet" = "Prague Aid needs internet connection to load locations. Please connect to wifi/celular and try again.";
+"filteredAll" = "Looks like there's nothing to display. Please check FILTER settings.";
 
+
+//MARK: - TargetTypeGroup
+
+"health_care" = "Medical institution";
+"pharmacies" = "Pharmacy";
 
 //MARK: - otherStrings
 
@@ -51,7 +58,7 @@
 "publicHolidays" = "PublicHolidays";
 //MoreVC:
 "filterLocations" = "FILTER LOCATIONS:";
-"pharmacies" = "Pharmacies";
+"pharms" = "Pharmacies";
 "medicalInstitutions" = "Medical institutions";
 "miscellaneous" = "MISCELLANEOUS:";
 "appLanguage" = "App language";

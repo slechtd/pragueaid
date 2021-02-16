@@ -26,7 +26,7 @@ enum MoreTableViewFilterCells: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .pharmacies: return otherStrings.pharmacies.rawValue.localized()
+        case .pharmacies: return otherStrings.pharms.rawValue.localized()
         case .medicalInstitutions: return otherStrings.medicalInstitutions.rawValue.localized()
         }
     }

@@ -19,7 +19,7 @@ class Target: NSObject, Codable, MKAnnotation {
     
     //MapKit stuff
     var title: String? {properties.name}
-    var subtitle: String? {properties.type.typeDescription}
+    var subtitle: String? {properties.type.group.rawValue.localized()}
     var coordinate: CLLocationCoordinate2D {return CLLocationCoordinate2D(latitude: self.geometry.coordinates[1], longitude: self.geometry.coordinates[0])}
     var mapItem: MKMapItem{MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary: [CNPostalAddressStreetKey: name]))}
     
@@ -33,8 +33,8 @@ class Target: NSObject, Codable, MKAnnotation {
     var address: String {"\(properties.address.streetAddress)" + " \(properties.address.addressLocality)"}
     var email1: String {properties.email.getSanitizedElement(at: 0)?.removeAllSpaces() ?? ""}
     var email2: String {properties.email.getSanitizedElement(at: 1)?.removeAllSpaces() ?? ""}
-    var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.shortenPhoneNumber() ?? ""}
-    var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.shortenPhoneNumber() ?? ""}
+    var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.formatPhoneNumber() ?? ""}
+    var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.formatPhoneNumber() ?? ""}
     var web1: String {properties.web.getSanitizedElement(at: 0)?.shortenUrl() ?? ""}
     var web2: String {properties.web.getSanitizedElement(at: 1)?.shortenUrl() ?? ""}
     var targetTypeGroup: TargetTypeGroup {properties.type.group}
@@ -46,10 +46,10 @@ class Target: NSObject, Codable, MKAnnotation {
     //Used to pass properties of the Target class to PAInfoCell when populating a tableView
     func getInfoContent() -> [InfoSectionCellContent] {
         return [
-            InfoSectionCellContent(action: .none, textLine1: typeDescription, textLine2: nil, icon: .questionmark),
+            InfoSectionCellContent(action: .none, textLine1: targetTypeGroup.rawValue.localized(), textLine2: nil, icon: .questionmark),
             InfoSectionCellContent(action: .address, textLine1: address, textLine2: nil, icon: .address),
             InfoSectionCellContent(action: .email, textLine1: email1, textLine2: email2, icon: .email),
-            InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2.dropFirstSpace(), icon: .phone),
+            InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2, icon: .phone),
             InfoSectionCellContent(action: .web, textLine1: web1, textLine2: web2, icon: .web)
         ]
     }

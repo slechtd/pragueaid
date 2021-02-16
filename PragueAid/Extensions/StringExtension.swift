@@ -41,12 +41,23 @@ extension String {
     }
     
     
-    func shortenPhoneNumber() -> String {
-        if self.dropFirstSpace().prefix(4) == "+420" {
-            return String(self.removeAllSpaces().dropFirst(4))
+    func formatPhoneNumber() -> String {
+        //remove all non-numeric chars
+        let phoneNumber = String(self.filter { String($0).rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil })
+        //remove 420
+        if phoneNumber.prefix(3) == "420" {
+            return String(phoneNumber.removeAllSpaces().dropFirst(3))
         } else {
-            return self
+            return phoneNumber
         }
     }
 }
 
+
+
+/*if self.dropFirstSpace().prefix(4) == "+420" {
+ return String(self.removeAllSpaces().dropFirst(4))
+} else {
+ return String(self.filter { String($0).rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil })
+}
+}*/

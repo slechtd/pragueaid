@@ -14,6 +14,7 @@
 "oops" = "Ups, něco se pokazilo.";
 "heart" = "❤️";
 "connection" = "📶";
+"magnificationGlass" = "🔎";
 "noPermissions" = "Přístup k poloze není povolen";
 "restrictedPermissions" = "Omezená polohová povolení";
 "noUserlocation" = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
@@ -22,7 +23,12 @@
 "thisFeature" = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
 "cannotRate" = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
 "noInternet" = "Prague Aid potřebuje internetové připojení pro načtení míst. Prosím, připojte se k wifi/fatům a zkuste operaci znovu.";
+"filteredAll" = "Nic k zobrazení. Prosím zkontrolujte nastavení FILTRU.";
 
+//MARK: - TargetTypeGroup
+
+"health_care" = "Zdravotnické zařízení";
+"pharmacies" = "Lékárna";
 
 //MARK: - otherStrings
 
@@ -51,8 +57,8 @@
 "publicHolidays" = "Svátky";
 //MoreVC:
 "filterLocations" = "FILTROVAT MÍSTA:";
-"pharmacies" = "Lékárny";
-"medicalInstitutions" = "Zdravotní zařízení";
+"pharms" = "Lékárny";
+"medicalInstitutions" = "Zdravotnické zařízení";
 "miscellaneous" = "JINÉ:";
 "appLanguage" = "Jazyk aplikace";
 "rateThisApp" = "Hodnotit aplikaci";

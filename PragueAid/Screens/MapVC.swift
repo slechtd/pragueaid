@@ -142,6 +142,9 @@ class MapVC: UIViewController {
             switch result {
             case .success(let loadedFilterSettings):
                 self.filterSettings = loadedFilterSettings
+                if loadedFilterSettings.medicalInstitutions == false && loadedFilterSettings.pharmacies == false {
+                    self.presentAlert(message: AlertMessages.filteredAll, title: AlertMessages.magnificationGlass)
+                }
             case .failure(let error):
                 self.presentErrorAlert(for: error)
             }

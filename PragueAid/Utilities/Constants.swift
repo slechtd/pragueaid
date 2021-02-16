@@ -25,10 +25,12 @@ enum SFSymbol: String {
 
 }
 
+
 //raw values not meant to be used as literals - see Localized.strings
 enum AlertMessages: String {
     case oops                       = "oops"
     case heart                      = "heart"
+    case magnificationGlass         = "magnificationGlass"
     case connection                 = "connection"
     case noPermissions              = "noPermissions"
     case restrictedPermissions      = "restrictedPermissions"
@@ -38,6 +40,7 @@ enum AlertMessages: String {
     case thisFeature                = "thisFeature"
     case cannotRate                 = "cannotRate"
     case noInternet                 = "noInternet"
+    case filteredAll                = "filteredAll"
     
 }
 
@@ -68,7 +71,7 @@ enum otherStrings: String {
     case publicHolidays = "publicHolidays"
     //MoreVC:
     case filterLocations = "filterLocations"
-    case pharmacies = "pharmacies"
+    case pharms = "pharms"
     case medicalInstitutions = "medicalInstitutions"
     case miscellaneous = "miscellaneous"
     case appLanguage = "appLanguage"

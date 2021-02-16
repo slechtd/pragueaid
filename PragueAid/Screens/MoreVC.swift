@@ -84,7 +84,7 @@ class MoreVC: UIViewController {
         })
     }
     
-    #warning("použít .MAP zde i jinde")
+    
     private func setupFilterToggles(settings: FilterSettings){
         for (i, cell) in filterCells.enumerated() {
             cell.toggle!.setOn(settings.getArray()[i], animated: true)
