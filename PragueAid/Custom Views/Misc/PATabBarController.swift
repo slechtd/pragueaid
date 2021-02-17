@@ -13,7 +13,7 @@ class PATabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = .systemRed
-        viewControllers                 = [MapNC(), MoreNC()]
+        viewControllers = [MapNC(), MoreNC()]
     }
     
     
@@ -31,5 +31,4 @@ class PATabBarController: UITabBarController {
         moreVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
         return UINavigationController(rootViewController: moreVC)
     }
-
 }

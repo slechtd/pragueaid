@@ -8,7 +8,7 @@
 
 import Foundation
 
-//raw values not meant to be used as literals - see Localized.strings
+//Raw values not meant to be used as literals - see Localized.strings
 enum PAError: String, Error {
     case invalidURL                     = "invalidURL"
     case unableToComplete               = "unableToComplete"

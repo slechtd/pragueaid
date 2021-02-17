@@ -35,8 +35,8 @@ class Target: NSObject, Codable, MKAnnotation {
     var email2: String {properties.email.getSanitizedElement(at: 1)?.removeAllSpaces() ?? ""}
     var telephone1: String {properties.telephone.getSanitizedElement(at: 0)?.formatPhoneNumber() ?? ""}
     var telephone2: String {properties.telephone.getSanitizedElement(at: 1)?.formatPhoneNumber() ?? ""}
-    var web1: String {properties.web.getSanitizedElement(at: 0)?.shortenUrl() ?? ""}
-    var web2: String {properties.web.getSanitizedElement(at: 1)?.shortenUrl() ?? ""}
+    var web1: String {properties.web.getSanitizedElement(at: 0)?.formatURL() ?? ""}
+    var web2: String {properties.web.getSanitizedElement(at: 1)?.formatURL() ?? ""}
     var targetTypeGroup: TargetTypeGroup {properties.type.group}
     var targetTypeID: TargetTypeID {properties.type.id}
     var typeDescription: String {properties.type.typeDescription}
@@ -83,7 +83,6 @@ class Target: NSObject, Codable, MKAnnotation {
         }
         return result
     }
-    
 }
 
 

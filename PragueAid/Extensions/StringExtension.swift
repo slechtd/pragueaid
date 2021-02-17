@@ -16,31 +16,27 @@ extension String {
     }
     
     
-    func dropFirstSpace() -> String {
-        if self.prefix(1) == " " {
-            return String(self.dropFirst())
-        } else {
-            return self
-        }
-    }
-    
-    
     func removeAllSpaces() -> String {
         return self.replacingOccurrences(of: "\\s*", with: "$1", options: [.regularExpression])
     }
     
     
-    func shortenUrl() -> String {
-        if self.removeAllSpaces().prefix(11) == "http://www." || self.removeAllSpaces().prefix(11) == "http//:www."  {
-            return String(self.removeAllSpaces().dropFirst(11))
-        } else if self.removeAllSpaces().prefix(12) == "https://www." || self.removeAllSpaces().prefix(12) == "https//:www."{
-            return String(self.removeAllSpaces().dropFirst(12))
-        } else {
-            return self
-        }
+    //Done to straighten non-standard and weird URL formats fetched from the API.
+    func formatURL() -> String {
+        var url = self.removeAllSpaces()
+        //remove random colons at the beginning
+        if url.prefix(1) == ":" { url = String(url.dropFirst()) }
+        //remove subdomain
+        if url.prefix(4) == "www." { url = String(url.dropFirst(4)) }
+        //remove 11 char long of protocols and subdomains, including weird cases
+        if url.prefix(11) == "http://www." || url.prefix(11) == "http//:www." { url = String(url.dropFirst(11)) }
+        //remove 12 char long of protocols and subdomains, including weird cases
+        if url.prefix(12) == "https://www." || url.prefix(12) == "https//:www." { url = String(url.dropFirst(12)) }
+        return url
     }
     
     
+    //Done to straighten non-standard and weird phone number formats fetched from the API.
     func formatPhoneNumber() -> String {
         //remove all non-numeric chars
         let phoneNumber = String(self.filter { String($0).rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil })
@@ -53,11 +49,3 @@ extension String {
     }
 }
 
-
-
-/*if self.dropFirstSpace().prefix(4) == "+420" {
- return String(self.removeAllSpaces().dropFirst(4))
-} else {
- return String(self.filter { String($0).rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789")) != nil })
-}
-}*/

@@ -56,7 +56,5 @@ extension MKMapView {
             return false
         }
     }
-    
-    
 }
 

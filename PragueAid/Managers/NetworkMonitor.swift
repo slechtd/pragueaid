@@ -10,10 +10,8 @@ import Foundation
 import Network
 
 
-
- 
+//Used to assertain user's internet connection
  class NetworkMonitor {
-     
      static let shared = NetworkMonitor()
      
      private let queue = DispatchQueue.global()

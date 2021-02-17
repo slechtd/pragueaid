@@ -44,6 +44,8 @@ class TargetVC: UIViewController {
     }
     
     
+//MARK: - UI
+    
     private func configureVC(){
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = target.name
@@ -54,6 +56,31 @@ class TargetVC: UIViewController {
     
     @objc private func dismissVC(){
         dismiss(animated: true)
+    }
+    
+    
+    private func generateCells(){
+        for cellContent in target.getInfoContent() {
+            if cellContent.textLine1 != "" {
+                let cell = PAInfoCell(cellContent: cellContent)
+                infoCells.append(cell)
+            }
+        }
+        
+        if target.getOpenings().isEmpty {
+            let cell = PAInfoCell(content: otherStrings.unavailable.rawValue.localized(), imageString: SFSymbol.unavailable.rawValue)
+            openingHourCells.append(cell)
+        } else {
+            for property in target.getOpenings() {
+                let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
+                openingHourCells.append(cell)
+            }
+        }
+        
+        if target.targetTypeGroup == .pharmacies {
+            let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
+            credentialCells.append(cell)
+        }
     }
     
     
@@ -92,33 +119,42 @@ class TargetVC: UIViewController {
     @objc private func callButtonTapped(){handlePhoneAction()}
 
     
-    
     private func launchMaps(){
         target.mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
     }
     
     
-    private func generateCells(){
-        for cellContent in target.getInfoContent() {
-            if cellContent.textLine1 != "" {
-                let cell = PAInfoCell(cellContent: cellContent)
-                infoCells.append(cell)
-            }
-        }
-        
-        if target.getOpenings().isEmpty {
-            let cell = PAInfoCell(content: otherStrings.unavailable.rawValue.localized(), imageString: SFSymbol.unavailable.rawValue)
-            openingHourCells.append(cell)
+//MARK: - Web/Tel/Mail Handling
+    
+    //opens URL on a physical device only.
+    func handleEmailAction(){
+        if self.target.email2 == "" {
+            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
+            UIApplication.shared.open(url)
+            print(url)
         } else {
-            for property in target.getOpenings() {
-                let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
-                openingHourCells.append(cell)
-            }
+            self.present(generateEmailActionSheet(), animated: true)
         }
-        
-        if target.targetTypeGroup == .pharmacies {
-            let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
-            credentialCells.append(cell)
+    }
+ 
+    
+    //opens URL on a physical device only.
+    func handlePhoneAction(){
+        if self.target.telephone2 == "" {
+            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
+            UIApplication.shared.open(url)
+        } else {
+            self.present(generateTelephoneActionSheet(), animated: true)
+        }
+    }
+    
+    
+    func handleWebAction(){
+        if self.target.web2 == "" {
+            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
+            self.presentSafariVC(with: url)
+        } else {
+            self.present(generateWebActionSheet(), animated: true)
         }
     }
     
@@ -166,41 +202,8 @@ class TargetVC: UIViewController {
         }))}
         return actionSheet
     }
-    
-    
-    //opens URL on a physical device only.
-    func handleEmailAction(){
-        if self.target.email2 == "" {
-            guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
-            UIApplication.shared.open(url)
-            print(url)
-        } else {
-            self.present(generateEmailActionSheet(), animated: true)
-        }
-    }
- 
-    
-    //opens URL on a physical device only.
-    func handlePhoneAction(){
-        if self.target.telephone2 == "" {
-            guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
-            UIApplication.shared.open(url)
-        } else {
-            self.present(generateTelephoneActionSheet(), animated: true)
-        }
-    }
-    
-    
-    func handleWebAction(){
-        if self.target.web2 == "" {
-            guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
-            self.presentSafariVC(with: url)
-        } else {
-            self.present(generateWebActionSheet(), animated: true)
-        }
-    }
-    
 }
+
 
 //MARK: - extensions
 
@@ -266,6 +269,7 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    
     func handleInfoCellsActions(indexPath: IndexPath) {
         switch infoCells[indexPath.row].action {
         case .address:
@@ -280,8 +284,5 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
             return
         }
     }
-    
-    
-
 }
 

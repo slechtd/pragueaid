@@ -31,9 +31,9 @@ struct Properties: Codable {
 
     enum CodingKeys: String, CodingKey {
         case address, email, id, name, telephone, type, web
-        case institutionCode = "institution_code"
-        case openingHours = "opening_hours"
-        case updatedAt = "updated_at"
+        case institutionCode    = "institution_code"
+        case openingHours       = "opening_hours"
+        case updatedAt          = "updated_at"
     }
 }
 
@@ -42,9 +42,9 @@ struct Address: Codable {
     let addressCountry, addressLocality, streetAddress: String
 
     enum CodingKeys: String, CodingKey {
-        case addressCountry = "address_country"
-        case addressLocality = "address_locality"
-        case streetAddress = "street_address"
+        case addressCountry     = "address_country"
+        case addressLocality    = "address_locality"
+        case streetAddress      = "street_address"
     }
 }
 
@@ -63,14 +63,14 @@ struct OpeningHour: Codable {
 
 
 enum DayOfWeek: String, Codable {
-    case friday = "Friday"
-    case monday = "Monday"
-    case publicHolidays = "PublicHolidays"
-    case saturday = "Saturday"
-    case sunday = "Sunday"
-    case thursday = "Thursday"
-    case tuesday = "Tuesday"
-    case wednesday = "Wednesday"
+    case friday             = "Friday"
+    case monday             = "Monday"
+    case publicHolidays     = "PublicHolidays"
+    case saturday           = "Saturday"
+    case sunday             = "Sunday"
+    case thursday           = "Thursday"
+    case tuesday            = "Tuesday"
+    case wednesday          = "Wednesday"
 }
 
 
@@ -93,23 +93,23 @@ enum TargetTypeGroup: String, Codable {
 
 
 enum TargetTypeID: String, Codable {
-    case a = "A"
-    case l = "L"
-    case lo = "LO"
-    case no = "NO"
-    case o = "O"
-    case oovl = "OOVL"
-    case z = "Z"
-    case zOovl = "Z/OOVL"
-    case zsFn = "ZS-FN"
-    case zsN = "ZS-N"
-    case zsNnp = "ZS-NNP"
-    case zsOaz = "ZS-OAZ"
-    case zsOzz = "ZS-OZZ"
-    case zsOzzz = "ZS-OZZZ"
-    case zsVzp = "ZS-VZP"
-    case zsZds = "ZS-ZDS"
-    case zsZs = "ZS-ZS"
+    case a          = "A"
+    case l          = "L"
+    case lo         = "LO"
+    case no         = "NO"
+    case o          = "O"
+    case oovl       = "OOVL"
+    case z          = "Z"
+    case zOovl      = "Z/OOVL"
+    case zsFn       = "ZS-FN"
+    case zsN        = "ZS-N"
+    case zsNnp      = "ZS-NNP"
+    case zsOaz      = "ZS-OAZ"
+    case zsOzz      = "ZS-OZZ"
+    case zsOzzz     = "ZS-OZZZ"
+    case zsVzp      = "ZS-VZP"
+    case zsZds      = "ZS-ZDS"
+    case zsZs       = "ZS-ZS"
 }
 
 

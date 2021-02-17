@@ -11,67 +11,67 @@
 
 //MARK: - AlertMessages
 
-"oops" = "Ups, něco se pokazilo.";
-"heart" = "❤️";
-"connection" = "📶";
-"magnificationGlass" = "🔎";
-"noPermissions" = "Přístup k poloze není povolen";
-"restrictedPermissions" = "Omezená polohová povolení";
-"noUserlocation" = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
-"notInPrague" = "Zdá se, že aktuálně nejste v Praze.";
-"noPermissionsExplanation" = "PragueAid polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
-"thisFeature" = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
-"cannotRate" = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
-"noInternet" = "Prague Aid potřebuje internetové připojení pro načtení míst. Prosím, připojte se k wifi/fatům a zkuste operaci znovu.";
-"filteredAll" = "Nic k zobrazení. Prosím zkontrolujte nastavení FILTRU.";
+"oops"                      = "Ups, něco se pokazilo.";
+"heart"                     = "❤️";
+"connection"                = "📶";
+"magnificationGlass"        = "🔎";
+"noPermissions"             = "Přístup k poloze není povolen";
+"restrictedPermissions"     = "Omezená polohová povolení";
+"noUserlocation"            = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
+"notInPrague"               = "Zdá se, že aktuálně nejste v Praze.";
+"noPermissionsExplanation"  = "PragueAid polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
+"thisFeature"               = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
+"cannotRate"                = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
+"noInternet"                = "Prague Aid potřebuje internetové připojení pro načtení míst. Prosím, připojte se k wifi/fatům a zkuste operaci znovu.";
+"filteredAll"               = "Nic k zobrazení. Prosím zkontrolujte nastavení FILTRU.";
 
 //MARK: - TargetTypeGroup
 
-"health_care" = "Zdravotnické zařízení";
-"pharmacies" = "Lékárna";
+"health_care"   = "Zdravotnické zařízení";
+"pharmacies"    = "Lékárna";
 
 //MARK: - otherStrings
 
 //titles and navigation:
-"search" = "Vyhledat";
-"more" = "Další";
-"searchPlaces" = "Vyhledat místa";
+"search"                = "Vyhledat";
+"more"                  = "Další";
+"searchPlaces"          = "Vyhledat místa";
 //other:
-"about" = "Ahoj!\nDíky za používání PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+"about"                 = "Ahoj!\nDíky za používání PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
 //TargetVC:
-"cancel" = "Zrušit";
-"information" = "INFORMACE:";
-"openingHours" = "OTEVÍRACÍ DOBA:";
-"unavailable" = "Není k dispozici";
-"pharmacyCredentials" = "PROVĚŘENÍ LÉKÁRNY:";
-"lastUpdated" = "Naposledy aktualizováno:";
+"cancel"                = "Zrušit";
+"information"           = "INFORMACE:";
+"openingHours"          = "OTEVÍRACÍ DOBA:";
+"unavailable"           = "Není k dispozici";
+"pharmacyCredentials"   = "PROVĚŘENÍ LÉKÁRNY:";
+"lastUpdated"           = "Naposledy aktualizováno:";
 //Target:
-"closed" = "Zavřeno";
-"monday" = "Ponděli";
-"tuesday" = "Úterý";
-"wednesday" = "Středa";
-"thursday" = "Čtvrtek";
-"friday" = "Pátek";
-"saturday" = "Sobota";
-"sunday" = "Neděle";
-"publicHolidays" = "Svátky";
+"closed"                = "Zavřeno";
+"monday"                = "Ponděli";
+"tuesday"               = "Úterý";
+"wednesday"             = "Středa";
+"thursday"              = "Čtvrtek";
+"friday"                = "Pátek";
+"saturday"              = "Sobota";
+"sunday"                = "Neděle";
+"publicHolidays"        = "Svátky";
 //MoreVC:
-"filterLocations" = "FILTROVAT MÍSTA:";
+"filterLocations"       = "FILTROVAT MÍSTA:";
 "pharms" = "Lékárny";
-"medicalInstitutions" = "Zdravotnické zařízení";
-"miscellaneous" = "JINÉ:";
-"appLanguage" = "Jazyk aplikace";
-"rateThisApp" = "Hodnotit aplikaci";
-"aboutThisApp"  = "O aplikaci";
+"medicalInstitutions"   = "Zdravotnické zařízení";
+"miscellaneous"         = "JINÉ:";
+"appLanguage"           = "Jazyk aplikace";
+"rateThisApp"           = "Hodnotit aplikaci";
+"aboutThisApp"          = "O aplikaci";
 
 //MARK: - PAError
 
-"invalidURL" = "Prosím zkuste to znovu později.";
-"unableToComplete" = "Prosím zkuste to znovu později.";
-"invalidResponse" = "Prosím zkuste to znovu později.";
-"invalidData" = "Prosím zkuste to znovu později.";
-"unableToDecode" = "Prosím zkuste to znovu později.";
-"unableToLoadFilterSettings" = "Prosím zkuste to znovu později.";
-"unableToSaveFilterSettings" = "Prosím zkuste to znovu později.";
-"unableToLoadTargets" = "Prosím zkuste to znovu později.";
-"unableToSaveTargets" = "Prosím zkuste to znovu později.";
+"invalidURL"                    = "Prosím zkuste to znovu později.";
+"unableToComplete"              = "Prosím zkuste to znovu později.";
+"invalidResponse"               = "Prosím zkuste to znovu později.";
+"invalidData"                   = "Prosím zkuste to znovu později.";
+"unableToDecode"                = "Prosím zkuste to znovu později.";
+"unableToLoadFilterSettings"    = "Prosím zkuste to znovu později.";
+"unableToSaveFilterSettings"    = "Prosím zkuste to znovu později.";
+"unableToLoadTargets"           = "Prosím zkuste to znovu později.";
+"unableToSaveTargets"           = "Prosím zkuste to znovu později.";

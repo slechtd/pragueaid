@@ -44,7 +44,6 @@ class PAFooterView: UIView {
     private func configureTitleLabel(){
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = message
-        
         self.addSubview(label)
         
         NSLayoutConstraint.activate([
@@ -60,7 +59,6 @@ class PAFooterView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
-        
         self.addSubview(imageView)
         
         NSLayoutConstraint.activate([
@@ -69,9 +67,5 @@ class PAFooterView: UIView {
             imageView.heightAnchor.constraint(equalToConstant: self.frame.height / 2),
             imageView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.9)
         ])
-        
-        
     }
-    
-
 }

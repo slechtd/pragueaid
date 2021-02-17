@@ -21,7 +21,6 @@ class PersistanceManager {
     
     
     func loadFilterSettingsFromPersistance(completed: @escaping(Result<FilterSettings, PAError>) -> Void) {
-        
         //check if any saved settings exist and if not, pass default ones.
         guard let filterSettingsData = defaults.object(forKey: Keys.filterSettings) as? Data else {
             let defaultSettings = FilterSettings(pharmacies: true, medicalInstitutions: false)
@@ -51,7 +50,6 @@ class PersistanceManager {
     
     
     func loadTargetsFromPersistance(completed: @escaping(Result<[Target], PAError>) -> Void) {
-        
         guard let targetData = defaults.object(forKey: Keys.targets) as? Data else {
             completed(.success([])); return
         }
@@ -75,5 +73,4 @@ class PersistanceManager {
             return .unableToSaveTargets
         }
     }
-    
 }

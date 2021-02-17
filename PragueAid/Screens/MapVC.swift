@@ -34,43 +34,48 @@ class MapVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         reloadAnnotations()
     }
+
+    
+//MARK: - UI
+    
+    private func configureVC(){
+        view.backgroundColor = .systemBackground
+        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
+        centerToUserLocationButton.tintColor = .systemRed
+        navigationItem.rightBarButtonItem = centerToUserLocationButton
+    }
     
     
-    private func checkLocationServices(){
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            resolveAuthStatus()
+    @objc private func centerToUserLocationButtonPressed(){
+        if permissionsGranted {
+            if inPrague { mapView.centerOnUserLocation() } else {self.presentAlert(message: .notInPrague)}
         } else {
-            mapView.centerOnDefaultLocation()
-            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions) //mozná zbytečné?
+            self.presentAlert(message: .thisFeature, title: .noPermissions)
         }
     }
     
     
-    func resolveAuthStatus(){
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined:
-                mapView.centerOnDefaultLocation()
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
-                mapView.centerOnDefaultLocation()
-            case .denied:
-                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
-                mapView.centerOnDefaultLocation()
-            case .authorizedAlways:
-                permissionsGranted = true
-                inPrague = mapView.checkIfInPrague()
-            case .authorizedWhenInUse:
-                permissionsGranted = true
-                inPrague = mapView.checkIfInPrague()
-            @unknown default:
-                mapView.centerOnDefaultLocation()
-                
-            }
-        }
+    private func presentTargetVC(target: Target){
+        let destVC = TargetVC(target: target)
+        let navControler = UINavigationController(rootViewController: destVC)
+        present(navControler, animated: true)
+    }
+    
+    
+//MARK: - MapView Stuff
+    
+    private func configureMapView(){
+        mapView.delegate = self
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(mapView)
+        mapView.constrainToPrague()
+        
+        NSLayoutConstraint.activate([
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     
@@ -88,6 +93,27 @@ class MapVC: UIViewController {
         }
     }
     
+    
+    private func filterAndAddlocations(){
+        if let filterSettings = filterSettings {
+            filteredLocations = fetchedLocations
+            if filterSettings.pharmacies == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .pharmacies}) }
+            if filterSettings.medicalInstitutions == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .healthCare}) }
+            DispatchQueue.main.async{self.mapView.addAnnotations(self.filteredLocations)}
+        } else {
+            DispatchQueue.main.async{self.mapView.addAnnotations(self.fetchedLocations)}
+        }
+    }
+    
+    
+    private func reloadAnnotations(){
+        loadFilterSettingsFromPersistance()
+        DispatchQueue.main.async{self.mapView.removeAnnotations(self.fetchedLocations)}
+        filterAndAddlocations()
+    }
+    
+    
+//MARK: - Networking & Persistance
     
     private func downloadTargets(){
         showLoadingView()
@@ -125,18 +151,6 @@ class MapVC: UIViewController {
     }
     
     
-    private func filterAndAddlocations(){
-        if let filterSettings = filterSettings {
-            filteredLocations = fetchedLocations
-            if filterSettings.pharmacies == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .pharmacies}) }
-            if filterSettings.medicalInstitutions == false { filteredLocations.removeAll(where: {$0.targetTypeGroup == .healthCare}) }
-            DispatchQueue.main.async{self.mapView.addAnnotations(self.filteredLocations)}
-        } else {
-            DispatchQueue.main.async{self.mapView.addAnnotations(self.fetchedLocations)}
-        }
-    }
-    
-    
     private func loadFilterSettingsFromPersistance(){
         PersistanceManager.shared.loadFilterSettingsFromPersistance(completed: {result in
             switch result {
@@ -152,51 +166,45 @@ class MapVC: UIViewController {
     }
     
     
-    private func reloadAnnotations(){
-        loadFilterSettingsFromPersistance()
-        DispatchQueue.main.async{self.mapView.removeAnnotations(self.fetchedLocations)}
-        filterAndAddlocations()
-    }
+//MARK: - Location Services & Permissions
     
-    
-    private func configureMapView(){
-        mapView.delegate = self
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mapView)
-        mapView.constrainToPrague()
-        
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    private func configureVC(){
-        view.backgroundColor = .systemBackground
-        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
-        centerToUserLocationButton.tintColor = .systemRed
-        navigationItem.rightBarButtonItem = centerToUserLocationButton
-    }
-    
-    
-    @objc private func centerToUserLocationButtonPressed(){
-        if permissionsGranted {
-            if inPrague { mapView.centerOnUserLocation() } else {self.presentAlert(message: .notInPrague)}
+    private func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            resolveAuthStatus()
         } else {
-            self.presentAlert(message: .thisFeature, title: .noPermissions)
+            mapView.centerOnDefaultLocation()
+            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions) //mozná zbytečné?
         }
     }
     
     
-    private func presentTargetVC(target: Target){
-        let destVC = TargetVC(target: target)
-        let navControler = UINavigationController(rootViewController: destVC)
-        present(navControler, animated: true)
+    func resolveAuthStatus(){
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                mapView.centerOnDefaultLocation()
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
+                mapView.centerOnDefaultLocation()
+            case .denied:
+                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+                mapView.centerOnDefaultLocation()
+            case .authorizedAlways:
+                permissionsGranted = true
+                inPrague = mapView.checkIfInPrague()
+            case .authorizedWhenInUse:
+                permissionsGranted = true
+                inPrague = mapView.checkIfInPrague()
+            @unknown default:
+                mapView.centerOnDefaultLocation()
+            }
+        }
     }
-    
 }
+
 
 //MARK: - extensions
 
@@ -236,12 +244,12 @@ extension MapVC: MKMapViewDelegate {
 extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
         resolveAuthStatus()
-        
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error.localizedDescription)
-        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
 

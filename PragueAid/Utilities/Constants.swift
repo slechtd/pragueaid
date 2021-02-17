@@ -26,7 +26,9 @@ enum SFSymbol: String {
 }
 
 
-//raw values not meant to be used as literals - see Localized.strings
+//MARK: - Localized strings
+
+//Raw values not meant to be used as literals - see Localized.strings
 enum AlertMessages: String {
     case oops                       = "oops"
     case heart                      = "heart"
@@ -44,38 +46,38 @@ enum AlertMessages: String {
     
 }
 
-//raw values not meant to be used as literals - see Localized.strings
+//Raw values not meant to be used as literals - see Localized.strings
 enum otherStrings: String {
-    //titles and navigation:
-    case search = "search"
-    case more = "more"
-    case searchPlaces = "searchPlaces"
-    //other:
-    case about = "about"
+    //Titles and navigation:
+    case search                 = "search"
+    case more                   = "more"
+    case searchPlaces           = "searchPlaces"
+    //Other:
+    case about                  = "about"
     //TargetVC:
-    case cancel = "cancel"
-    case information = "information"
-    case openingHours = "openingHours"
-    case unavailable = "unavailable"
-    case pharmacyCredentials = "pharmacyCredentials"
-    case lastUpdated = "lastUpdated"
+    case cancel                 = "cancel"
+    case information            = "information"
+    case openingHours           = "openingHours"
+    case unavailable            = "unavailable"
+    case pharmacyCredentials    = "pharmacyCredentials"
+    case lastUpdated            = "lastUpdated"
     //Target:
-    case closed = "closed"
-    case monday = "monday"
-    case tuesday = "tuesday"
-    case wednesday = "wednesday"
-    case thursday = "thursday"
-    case friday = "friday"
-    case saturday = "saturday"
-    case sunday = "sunday"
-    case publicHolidays = "publicHolidays"
+    case closed                 = "closed"
+    case monday                 = "monday"
+    case tuesday                = "tuesday"
+    case wednesday              = "wednesday"
+    case thursday               = "thursday"
+    case friday                 = "friday"
+    case saturday               = "saturday"
+    case sunday                 = "sunday"
+    case publicHolidays         = "publicHolidays"
     //MoreVC:
-    case filterLocations = "filterLocations"
-    case pharms = "pharms"
-    case medicalInstitutions = "medicalInstitutions"
-    case miscellaneous = "miscellaneous"
-    case appLanguage = "appLanguage"
-    case rateThisApp = "rateThisApp"
-    case aboutThisApp = "aboutThisApp"
+    case filterLocations        = "filterLocations"
+    case pharms                 = "pharms"
+    case medicalInstitutions    = "medicalInstitutions"
+    case miscellaneous          = "miscellaneous"
+    case appLanguage            = "appLanguage"
+    case rateThisApp            = "rateThisApp"
+    case aboutThisApp           = "aboutThisApp"
 }
 

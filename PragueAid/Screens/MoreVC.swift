@@ -23,12 +23,27 @@ class MoreVC: UIViewController {
         generateCells()
         configureTableView()
         loadFilterSettingsFromPersistance()
-        
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         if madeChanges { saveFilterSettingsToPersistance() }
+    }
+    
+    
+//MARK: - UI
+    
+    private func generateCells(){
+        for i in MoreTableViewFilterCells.allCases {
+            let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: true)
+            cell.toggle!.addTarget(self, action: #selector(toggleSwitched), for: .allTouchEvents)
+            filterCells.append(cell)
+        }
+        
+        for i in MoreTableViewMiscCells.allCases {
+            let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: false)
+            miscCells.append(cell)
+        }
     }
     
     
@@ -47,23 +62,12 @@ class MoreVC: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        
     }
     
     
-    private func generateCells(){
-        
-        for i in MoreTableViewFilterCells.allCases {
-            let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: true)
-            cell.toggle!.addTarget(self, action: #selector(toggleSwitched), for: .allTouchEvents)
-            filterCells.append(cell)
-        }
-        
-        
-        for i in MoreTableViewMiscCells.allCases {
-            let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: false)
-            miscCells.append(cell)
+    private func setupFilterToggles(settings: FilterSettings){
+        for (i, cell) in filterCells.enumerated() {
+            cell.toggle!.setOn(settings.getArray()[i], animated: true)
         }
     }
     
@@ -72,6 +76,8 @@ class MoreVC: UIViewController {
         madeChanges = true
     }
     
+
+//MARK: - Persistance
     
     private func loadFilterSettingsFromPersistance(){
         PersistanceManager.shared.loadFilterSettingsFromPersistance(completed: {result in
@@ -85,13 +91,6 @@ class MoreVC: UIViewController {
     }
     
     
-    private func setupFilterToggles(settings: FilterSettings){
-        for (i, cell) in filterCells.enumerated() {
-            cell.toggle!.setOn(settings.getArray()[i], animated: true)
-        }
-    }
-    
-    
     private func saveFilterSettingsToPersistance(){
         let result = PersistanceManager.shared.saveFilterSettingsToPersistance(settings: getCurrentFilterSettings())
         if result != nil { self.presentErrorAlert(for: result!) }
@@ -102,15 +101,13 @@ class MoreVC: UIViewController {
         let settings = FilterSettings(pharmacies: filterCells[0].toggle!.isOn, medicalInstitutions: filterCells[1].toggle!.isOn)
         return settings
     }
-
 }
+
 
 //MARK: - extensions
 
-
 extension MoreVC: UITableViewDataSource, UITableViewDelegate{
-    
-    
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return MoreTableViewSections.allCases.count
     }
@@ -139,7 +136,6 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
             break
         }
         return cell
-
     }
     
     

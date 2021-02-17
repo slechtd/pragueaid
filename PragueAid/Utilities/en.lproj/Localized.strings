@@ -11,68 +11,68 @@
 
 //MARK: - AlertMessages
 
-"oops" = "Oops, something went wrong.";
-"heart" = "❤️";
-"connection" = "📶";
-"magnificationGlass" = "🔎";
-"noPermissions" = "No Location Permissions";
-"restrictedPermissions" = "Restricted Location Permissions";
-"noUserlocation" = "PragueAid has troubles determining your location. Please try again later";
-"notInPrague" = "Looks like you're nowhere near Prague.";
-"noPermissionsExplanation" = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
-"thisFeature" = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
-"cannotRate" = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
-"noInternet" = "Prague Aid needs internet connection to load locations. Please connect to wifi/celular and try again.";
-"filteredAll" = "Looks like there's nothing to display. Please check FILTER settings.";
+"oops"                      = "Oops, something went wrong.";
+"heart"                     = "❤️";
+"connection"                = "📶";
+"magnificationGlass"        = "🔎";
+"noPermissions"             = "No Location Permissions";
+"restrictedPermissions"     = "Restricted Location Permissions";
+"noUserlocation"            = "PragueAid has troubles determining your location. Please try again later";
+"notInPrague"               = "Looks like you're nowhere near Prague.";
+"noPermissionsExplanation"  = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
+"thisFeature"               = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
+"cannotRate"                = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
+"noInternet"                = "Prague Aid needs internet connection to load locations. Please connect to wifi/celular and try again.";
+"filteredAll"               = "Looks like there's nothing to display. Please check FILTER settings.";
 
 
 //MARK: - TargetTypeGroup
 
-"health_care" = "Medical institution";
-"pharmacies" = "Pharmacy";
+"health_care"   = "Medical institution";
+"pharmacies"    = "Pharmacy";
 
 //MARK: - otherStrings
 
 //titles and navigation:
-"search" = "Search";
-"more" = "More";
-"searchPlaces" = "Search Places";
+"search"                = "Search";
+"more"                  = "More";
+"searchPlaces"          = "Search Places";
 //other:
-"about" = "Hi there!\nThank you for checking out PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+"about"                 = "Hi there!\nThank you for checking out PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
 //TargetVC:
-"cancel" = "Cancel";
-"information" = "INFORMATION:";
-"openingHours" = "OPENING HOURS:";
-"unavailable" = "Unavailable";
-"pharmacyCredentials" = "PHARMACY CREDENTIALS:";
-"lastUpdated" = "Last updated:";
+"cancel"                = "Cancel";
+"information"           = "INFORMATION:";
+"openingHours"          = "OPENING HOURS:";
+"unavailable"           = "Unavailable";
+"pharmacyCredentials"   = "PHARMACY CREDENTIALS:";
+"lastUpdated"           = "Last updated:";
 //Target
-"closed" = "Closed";
-"monday" = "Monday";
-"tuesday" = "Tuesday";
-"wednesday" = "Wednesday";
-"thursday" = "Thursday";
-"friday" = "Friday";
-"saturday" = "Saturday";
-"sunday" = "Sunday";
-"publicHolidays" = "PublicHolidays";
+"closed"                = "Closed";
+"monday"                = "Monday";
+"tuesday"               = "Tuesday";
+"wednesday"             = "Wednesday";
+"thursday"              = "Thursday";
+"friday"                = "Friday";
+"saturday"              = "Saturday";
+"sunday"                = "Sunday";
+"publicHolidays"        = "PublicHolidays";
 //MoreVC:
-"filterLocations" = "FILTER LOCATIONS:";
+"filterLocations"       = "FILTER LOCATIONS:";
 "pharms" = "Pharmacies";
-"medicalInstitutions" = "Medical institutions";
-"miscellaneous" = "MISCELLANEOUS:";
-"appLanguage" = "App language";
-"rateThisApp" = "Rate this app";
-"aboutThisApp" = "About this app";
+"medicalInstitutions"   = "Medical institutions";
+"miscellaneous"         = "MISCELLANEOUS:";
+"appLanguage"           = "App language";
+"rateThisApp"           = "Rate this app";
+"aboutThisApp"          = "About this app";
 
 //MARK: - PAError
 
-"invalidURL" = "Please try again later.";
-"unableToComplete" = "Please try again later.";
-"invalidResponse" = "Please try again later.";
-"invalidData" = "Please try again later.";
-"unableToDecode" = "Please try again later.";
-"unableToLoadFilterSettings" = "Please try again later.";
-"unableToSaveFilterSettings" = "Please try again later.";
-"unableToLoadTargets" = "Please try again later.";
-"unableToSaveTargets" = "Please try again later.";
+"invalidURL"                    = "Please try again later.";
+"unableToComplete"              = "Please try again later.";
+"invalidResponse"               = "Please try again later.";
+"invalidData"                   = "Please try again later.";
+"unableToDecode"                = "Please try again later.";
+"unableToLoadFilterSettings"    = "Please try again later.";
+"unableToSaveFilterSettings"    = "Please try again later.";
+"unableToLoadTargets"           = "Please try again later.";
+"unableToSaveTargets"           = "Please try again later.";

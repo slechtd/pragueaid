@@ -21,14 +21,12 @@ class PAButtonView: UIView {
     
     var leftButton: PAButton?
     var rightButton: PAButton?
-    
     var style: PAButtonViewStyle?
     
     
     init(frame: CGRect, style: PAButtonViewStyle) {
         super.init(frame: frame)
         self.style = style
-        
         configureStackView()
     }
     
@@ -39,7 +37,6 @@ class PAButtonView: UIView {
     
     
     private func configureStackView(){
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -68,5 +65,4 @@ class PAButtonView: UIView {
             stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.90)
         ])
     }
-    
 }

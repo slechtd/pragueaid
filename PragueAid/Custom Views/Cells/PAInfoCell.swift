@@ -74,7 +74,5 @@ class PAInfoCell: UITableViewCell {
             toggle!.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             toggle!.widthAnchor.constraint(equalToConstant: 65) //test value
         ])
-        
     }
-
 }

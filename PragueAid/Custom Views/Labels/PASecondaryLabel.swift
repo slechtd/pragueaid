@@ -27,6 +27,5 @@ class PASecondaryLabel: UILabel {
         self.textColor = .secondaryLabel
         self.textAlignment = .center
     }
-
 }
 

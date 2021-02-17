@@ -23,6 +23,8 @@ class AboutVC: UIViewController {
     }
     
     
+//MARK: - UI
+    
     private func configureVC() {
         view.backgroundColor = .systemBackground
         navigationItem.title = otherStrings.aboutThisApp.rawValue.localized()
@@ -45,9 +47,7 @@ class AboutVC: UIViewController {
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 50)
         
         footerView = PAButtonView(frame: frame, style: .about)
-        
         tableView.tableFooterView = footerView
-        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
@@ -60,7 +60,6 @@ class AboutVC: UIViewController {
         
         footerView?.leftButton!.addTarget(self, action: #selector(gitHubButtonTapped), for: .touchUpInside)
         footerView?.rightButton!.addTarget(self, action: #selector(linkedInButtonTapped), for: .touchUpInside)
-        
     }
     
     
@@ -81,7 +80,6 @@ class AboutVC: UIViewController {
 
 extension AboutVC: UITableViewDataSource, UITableViewDelegate{
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -90,7 +88,6 @@ extension AboutVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
         cell.textLabel?.text = otherStrings.about.rawValue.localized()
-        //cell.textLabel?.lineBreakMode = .byTruncatingMiddle
         cell.textLabel?.numberOfLines = 10
         return cell
     }
