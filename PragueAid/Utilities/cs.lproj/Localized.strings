@@ -15,14 +15,14 @@
 "heart"                     = "❤️";
 "connection"                = "📶";
 "magnificationGlass"        = "🔎";
-"noPermissions"             = "Přístup k poloze není povolen";
-"restrictedPermissions"     = "Omezená polohová povolení";
-"noUserlocation"            = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte později.";
-"notInPrague"               = "Zdá se, že aktuálně nejste v Praze.";
-"noPermissionsExplanation"  = "PragueAid polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
+"noPermissions"             = "Přístup k poloze není povolen.";
+"restrictedPermissions"     = "Omezený přístup k poloze.";
+"noUserlocation"            = "PragueAid má problémy s určením Vaší pozice. Prosím opakujte akci později.";
+"notInPrague"               = "Zdá se, že aktuálně nejste v Praze. Tuto funkci prosím použijte v Praze a jejím okolí.";
+"noPermissionsExplanation"  = "PragueAid používá polohová data k zobrazení relevantních lokalit ve Vašem okolí. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
 "thisFeature"               = "Tato funkce vyžaduje přístup k Vaší poloze. Prosím povolte PragueAid přístup k uživatelské poloze v nastavení.";
 "cannotRate"                = "PragueAid je v tuto chvíli projekt do portfólia. Nedošlo k publikaci do appstore (zatím!) a nelze hodnotit.\nkaždopádně díky za podporu!";
-"noInternet"                = "Prague Aid potřebuje internetové připojení pro načtení míst. Prosím, připojte se k wifi/fatům a zkuste operaci znovu.";
+"noInternet"                = "PragueAid potřebuje internetové připojení pro načtení míst.";
 "filteredAll"               = "Nic k zobrazení. Prosím zkontrolujte nastavení FILTRU.";
 
 //MARK: - TargetTypeGroup
@@ -38,6 +38,7 @@
 "searchPlaces"          = "Vyhledat místa";
 //other:
 "about"                 = "Ahoj!\nDíky za používání PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+"privacyMessage"        = "Pro optimální funkčnost, PragueAid vás může požádat o přístup k informacím o vaší poloze. Jiné osobní údaje nejsou žádným způsobem sbírána ani skladována.";
 //TargetVC:
 "cancel"                = "Zrušit";
 "information"           = "INFORMACE:";
@@ -61,6 +62,7 @@
 "medicalInstitutions"   = "Zdravotnické zařízení";
 "miscellaneous"         = "JINÉ:";
 "appLanguage"           = "Jazyk aplikace";
+"privacyPolicy"         = "Ochrana osobních údajů";
 "rateThisApp"           = "Hodnotit aplikaci";
 "aboutThisApp"          = "O aplikaci";
 

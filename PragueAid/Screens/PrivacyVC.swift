@@ -8,12 +8,10 @@
 
 import UIKit
 
-class AboutVC: UIViewController {
+class PrivacyVC: UIViewController {
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let reuseIdentifier = "infoCell"
-    
-    var footerView: PAButtonView?
     
     
     override func viewDidLoad() {
@@ -27,7 +25,7 @@ class AboutVC: UIViewController {
     
     private func configureVC() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = otherStrings.aboutThisApp.rawValue.localized()
+        navigationItem.title = otherStrings.privacyPolicy.rawValue.localized()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissTapped))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -41,13 +39,9 @@ class AboutVC: UIViewController {
     private func configureTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 200
+        tableView.rowHeight = 150
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 50)
-        
-        footerView = PAButtonView(frame: frame, style: .about)
-        tableView.tableFooterView = footerView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
@@ -57,28 +51,12 @@ class AboutVC: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        footerView?.leftButton!.addTarget(self, action: #selector(gitHubButtonTapped), for: .touchUpInside)
-        footerView?.rightButton!.addTarget(self, action: #selector(linkedInButtonTapped), for: .touchUpInside)
     }
-    
-    
-    @objc private func gitHubButtonTapped(){
-        guard let url = URL(string: "https://github.com/slechtd") else {return}
-        self.presentSafariVC(with: url)
-    }
-    
-    
-    @objc private func linkedInButtonTapped(){
-        guard let url = URL(string: "https://www.linkedin.com/in/daniel-slechta/") else {return}
-        self.presentSafariVC(with: url)
-    }
-    
 }
 
 //MARK: - extensions
 
-extension AboutVC: UITableViewDataSource, UITableViewDelegate{
+extension PrivacyVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -87,7 +65,7 @@ extension AboutVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
-        cell.textLabel?.text = otherStrings.about.rawValue.localized()
+        cell.textLabel?.text = otherStrings.privacyMessage.rawValue.localized()
         cell.textLabel?.numberOfLines = 10
         return cell
     }

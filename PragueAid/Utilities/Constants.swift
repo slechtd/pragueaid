@@ -22,6 +22,7 @@ enum SFSymbol: String {
     case web            = "globe"
     case cross          = "cross"
     case lang           = "captions.bubble"
+    case privacy        = "person"
 
 }
 
@@ -54,6 +55,7 @@ enum otherStrings: String {
     case searchPlaces           = "searchPlaces"
     //Other:
     case about                  = "about"
+    case privacyMessage         = "privacyMessage"
     //TargetVC:
     case cancel                 = "cancel"
     case information            = "information"
@@ -77,6 +79,7 @@ enum otherStrings: String {
     case medicalInstitutions    = "medicalInstitutions"
     case miscellaneous          = "miscellaneous"
     case appLanguage            = "appLanguage"
+    case privacyPolicy          = "privacyPolicy"
     case rateThisApp            = "rateThisApp"
     case aboutThisApp           = "aboutThisApp"
 }

@@ -15,14 +15,14 @@
 "heart"                     = "❤️";
 "connection"                = "📶";
 "magnificationGlass"        = "🔎";
-"noPermissions"             = "No Location Permissions";
-"restrictedPermissions"     = "Restricted Location Permissions";
-"noUserlocation"            = "PragueAid has troubles determining your location. Please try again later";
-"notInPrague"               = "Looks like you're nowhere near Prague.";
+"noPermissions"             = "No Location Permissions.";
+"restrictedPermissions"     = "Restricted Location Permissions.";
+"noUserlocation"            = "PragueAid has troubles determining your location. Please try again later.";
+"notInPrague"               = "Looks like you're nowhere near Prague. Please use this feature in or near Prague.";
 "noPermissionsExplanation"  = "PragueAid uses Location data to show you relevant targets nearby. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
 "thisFeature"               = "This feature requires acess to your Location. For the best experience, please allow PragueAid access to Location in your iPhone's settings.";
 "cannotRate"                = "PragueAid is currently a portfolio project. It hasn't been published to the app store (yet!) and cannot be rated.\nThanks for the support though!";
-"noInternet"                = "Prague Aid needs internet connection to load locations. Please connect to wifi/celular and try again.";
+"noInternet"                = "PragueAid needs internet connection to load locations.";
 "filteredAll"               = "Looks like there's nothing to display. Please check FILTER settings.";
 
 
@@ -39,6 +39,7 @@
 "searchPlaces"          = "Search Places";
 //other:
 "about"                 = "Hi there!\nThank you for checking out PragueAid.\n\nPowered by Prague OpenData API.\n\nv0.1\n© 2021 Daniel Šlechta";
+"privacyMessage"        = "For best user experience, PragueAid may request access to your location. No other personal information is collected or stored by PragueAid in any way.";
 //TargetVC:
 "cancel"                = "Cancel";
 "information"           = "INFORMATION:";
@@ -62,6 +63,7 @@
 "medicalInstitutions"   = "Medical institutions";
 "miscellaneous"         = "MISCELLANEOUS:";
 "appLanguage"           = "App language";
+"privacyPolicy"         = "Privacy policy";
 "rateThisApp"           = "Rate this app";
 "aboutThisApp"          = "About this app";
 

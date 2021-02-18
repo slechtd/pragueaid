@@ -154,7 +154,7 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
             case 0:
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             case 1:
-                presentAlert(message: AlertMessages.cannotRate, title: AlertMessages.heart)
+                present(UINavigationController(rootViewController: PrivacyVC()), animated: true)
             case 2:
                 present(UINavigationController(rootViewController: AboutVC()), animated: true)
             default:
