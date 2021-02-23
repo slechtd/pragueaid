@@ -42,14 +42,12 @@ enum MoreTableViewFilterCells: Int, CaseIterable {
 
 enum MoreTableViewMiscCells: Int, CaseIterable {
     case lang
-    //case rate
     case privacy
     case about
     
     var description: String {
         switch self {
         case .lang: return otherStrings.appLanguage.rawValue.localized()
-        //case .rate: return otherStrings.rateThisApp.rawValue.localized()
         case .privacy: return otherStrings.privacyPolicy.rawValue.localized()
         case .about: return otherStrings.aboutThisApp.rawValue.localized()
         }
@@ -58,7 +56,6 @@ enum MoreTableViewMiscCells: Int, CaseIterable {
     var image: String {
         switch self {
         case .lang: return SFSymbol.lang.rawValue
-        //case .rate: return SFSymbol.star.rawValue
         case .privacy: return SFSymbol.privacy.rawValue
         case .about: return SFSymbol.questionmark.rawValue
         }

@@ -48,7 +48,7 @@ class PAButtonView: UIView {
             leftButton = PAButton(style: .navigate)
             rightButton = PAButton(style: .call)
             stackView.addArrangedSubview(leftButton!)
-            stackView.addArrangedSubview(rightButton!)
+            if UIDevice.current.userInterfaceIdiom == .phone {stackView.addArrangedSubview(rightButton!)}
         case .about:
             leftButton = PAButton(style: .github)
             rightButton = PAButton(style: .linkedIn)
@@ -57,12 +57,16 @@ class PAButtonView: UIView {
         case .none:
             print("Error: No PAButtonViewStyle")
         }
-        
+
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: self.frame.height),
-            stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.90)
+            stackView.heightAnchor.constraint(equalToConstant: self.frame.height)
         ])
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            NSLayoutConstraint.activate([stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.30)])
+        } else {
+            NSLayoutConstraint.activate([stackView.widthAnchor.constraint(equalToConstant: self.frame.width)])
+        }
     }
 }

@@ -12,7 +12,7 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     
-    private let baseUrlString = "https://api.golemio.cz/v2/medicalinstitutions"
+    private let baseUrlString = "http://api.golemio.cz/v2/medicalinstitutions"
     private let apiKey = "" //generate your own at https://api.golemio.cz/api-keys
     
     

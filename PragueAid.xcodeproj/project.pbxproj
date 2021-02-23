@@ -489,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 54LT599VG8;
 				INFOPLIST_FILE = PragueAid/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -507,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 54LT599VG8;
 				INFOPLIST_FILE = PragueAid/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -33,18 +33,12 @@ enum SFSymbol: String {
 enum AlertMessages: String {
     case oops                       = "oops"
     case heart                      = "heart"
-    case magnificationGlass         = "magnificationGlass"
     case connection                 = "connection"
     case noPermissions              = "noPermissions"
     case restrictedPermissions      = "restrictedPermissions"
     case noUserlocation             = "noUserlocation"
     case notInPrague                = "notInPrague"
-    case noPermissionsExplanation   = "noPermissionsExplanation"
-    case thisFeature                = "thisFeature"
-    case cannotRate                 = "cannotRate"
     case noInternet                 = "noInternet"
-    case filteredAll                = "filteredAll"
-    
 }
 
 //Raw values not meant to be used as literals - see Localized.strings
@@ -80,7 +74,6 @@ enum otherStrings: String {
     case miscellaneous          = "miscellaneous"
     case appLanguage            = "appLanguage"
     case privacyPolicy          = "privacyPolicy"
-    case rateThisApp            = "rateThisApp"
     case aboutThisApp           = "aboutThisApp"
 }
 

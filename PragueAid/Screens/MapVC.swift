@@ -24,7 +24,6 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureVC()
         checkLocationServices()
         configureMapView()
         loadFilterSettingsFromPersistance()
@@ -38,8 +37,7 @@ class MapVC: UIViewController {
     
 //MARK: - UI
     
-    private func configureVC(){
-        view.backgroundColor = .systemBackground
+    private func configureCenterToUserLocationButton(){
         let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
         centerToUserLocationButton.tintColor = .systemRed
         navigationItem.rightBarButtonItem = centerToUserLocationButton
@@ -49,8 +47,6 @@ class MapVC: UIViewController {
     @objc private func centerToUserLocationButtonPressed(){
         if permissionsGranted {
             if inPrague { mapView.centerOnUserLocation() } else {self.presentAlert(message: .notInPrague)}
-        } else {
-            self.presentAlert(message: .thisFeature, title: .noPermissions)
         }
     }
     
@@ -156,9 +152,6 @@ class MapVC: UIViewController {
             switch result {
             case .success(let loadedFilterSettings):
                 self.filterSettings = loadedFilterSettings
-                if loadedFilterSettings.medicalInstitutions == false && loadedFilterSettings.pharmacies == false {
-                    self.presentAlert(message: AlertMessages.filteredAll, title: AlertMessages.magnificationGlass)
-                }
             case .failure(let error):
                 self.presentErrorAlert(for: error)
             }
@@ -175,7 +168,6 @@ class MapVC: UIViewController {
             resolveAuthStatus()
         } else {
             mapView.centerOnDefaultLocation()
-            self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions) //mozná zbytečné?
         }
     }
     
@@ -187,17 +179,19 @@ class MapVC: UIViewController {
                 mapView.centerOnDefaultLocation()
                 locationManager.requestWhenInUseAuthorization()
             case .restricted:
-                self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
+                //self.presentAlert(message: .noPermissionsExplanation, title: .restrictedPermissions)
                 mapView.centerOnDefaultLocation()
             case .denied:
-                self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
+                //self.presentAlert(message: .noPermissionsExplanation, title: .noPermissions)
                 mapView.centerOnDefaultLocation()
             case .authorizedAlways:
                 permissionsGranted = true
                 inPrague = mapView.checkIfInPrague()
+                configureCenterToUserLocationButton()
             case .authorizedWhenInUse:
                 permissionsGranted = true
                 inPrague = mapView.checkIfInPrague()
+                configureCenterToUserLocationButton()
             @unknown default:
                 mapView.centerOnDefaultLocation()
             }

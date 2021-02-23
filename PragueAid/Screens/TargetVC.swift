@@ -277,7 +277,7 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         case .email:
             handleEmailAction()
         case .phone:
-            handlePhoneAction()
+            if UIDevice.current.userInterfaceIdiom == .phone {handlePhoneAction()}
         case .web:
             handleWebAction()
         default:

@@ -31,14 +31,17 @@ class MoreVC: UIViewController {
     }
     
     
-//MARK: - UI
+    //MARK: - UI
     
     private func generateCells(){
-        for i in MoreTableViewFilterCells.allCases {
-            let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: true)
-            cell.toggle!.addTarget(self, action: #selector(toggleSwitched), for: .allTouchEvents)
-            filterCells.append(cell)
-        }
+        let pharmaciesFilterCell = PAInfoCell(content: MoreTableViewFilterCells.allCases[0].description, imageString: MoreTableViewFilterCells.allCases[0].image, toggle: true)
+        let medicalInstitutionsFilterCell = PAInfoCell(content: MoreTableViewFilterCells.allCases[1].description, imageString: MoreTableViewFilterCells.allCases[1].image, toggle: true)
+        
+        filterCells.append(pharmaciesFilterCell)
+        filterCells.append(medicalInstitutionsFilterCell)
+        
+        pharmaciesFilterCell.toggle!.addTarget(self, action: #selector(pharmaciesToggleSwitched), for: .allTouchEvents)
+        medicalInstitutionsFilterCell.toggle!.addTarget(self, action: #selector(medicalInstitutionsToggleSwitched), for: .allTouchEvents)
         
         for i in MoreTableViewMiscCells.allCases {
             let cell = PAInfoCell(content: i.description, imageString: i.image, toggle: false)
@@ -72,12 +75,23 @@ class MoreVC: UIViewController {
     }
     
     
-    @objc func toggleSwitched(){
+    @objc func pharmaciesToggleSwitched(){
         madeChanges = true
+        if filterCells[0].toggle!.isOn == false || filterCells[1].toggle!.isOn == false {
+            filterCells[1].toggle!.setOn(true, animated: true)
+        }
     }
     
-
-//MARK: - Persistance
+    
+    @objc func medicalInstitutionsToggleSwitched(){
+        madeChanges = true
+        if filterCells[1].toggle!.isOn == false || filterCells[0].toggle!.isOn == false {
+            filterCells[0].toggle!.setOn(true, animated: true)
+        }
+    }
+    
+    
+    //MARK: - Persistance
     
     private func loadFilterSettingsFromPersistance(){
         PersistanceManager.shared.loadFilterSettingsFromPersistance(completed: {result in
@@ -107,7 +121,7 @@ class MoreVC: UIViewController {
 //MARK: - extensions
 
 extension MoreVC: UITableViewDataSource, UITableViewDelegate{
-        
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return MoreTableViewSections.allCases.count
     }
