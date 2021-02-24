@@ -2,7 +2,7 @@
 
 <img src="https://github.com/slechtd/pragueaid/blob/master/Pics/ReadMePic.png" width="100%" align="center"/>
 
-**PragueAid** allows you to explore Prague's pharmacies and medical institutions near you.
+**PragueAid** (<a href="https://apps.apple.com/cz/app/pragueaid/id1554479378">AppStore</a>) allows you to explore Prague's pharmacies and medical institutions near you.
 
 Built around **Prague Open Data API**, it gets publicly available GeoJSON featuring pharmacies and medical institutions using a native implementation of **networking**. The fetched GeoJSON is parsed into custom objects. Relying on **MapKit**, these objects are then plotted as MKAnnotaions onto an MKMapView trough conformance to relevant protocols.
 
