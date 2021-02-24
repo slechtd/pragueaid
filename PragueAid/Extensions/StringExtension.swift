@@ -11,6 +11,7 @@ import Foundation
 extension String {
     
     
+    //Return a localized version of self as per Localized.strings
     func localized() -> String {
         return NSLocalizedString(self, tableName: "Localized", bundle: .main, value: self, comment: self)
     }

@@ -10,6 +10,7 @@ import Foundation
 
 extension Array {
     
+    //Used to prevent crashes from refferencing non-existent array elements.
     func getSanitizedElement(at index: Int) -> Element? {
         let isValidIndex = index >= 0 && index < count
         return isValidIndex ? self[index] : nil

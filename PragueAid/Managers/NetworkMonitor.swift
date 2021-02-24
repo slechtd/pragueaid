@@ -10,7 +10,7 @@ import Foundation
 import Network
 
 
-//Used to assertain user's internet connection
+//Used to assertain user's internet connection status
  class NetworkMonitor {
      static let shared = NetworkMonitor()
      

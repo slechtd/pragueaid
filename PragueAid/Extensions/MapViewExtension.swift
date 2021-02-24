@@ -38,6 +38,7 @@ extension MKMapView {
     }
     
     
+    //Checks whether user is in Prague and centers to their location. Alternativelly when user is not in Prague, the MapView is centered to a default location.
     func checkIfInPrague() -> Bool {
         let locationManager = CLLocationManager()
         let prague = CLLocation(latitude: 50.0834225, longitude: 14.4241778)

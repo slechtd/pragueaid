@@ -14,6 +14,7 @@ enum Keys {
 }
 
 
+//Contains methods used for saving and loading filter settings and Targets from persistance.
 class PersistanceManager {
     
     static let shared = PersistanceManager()

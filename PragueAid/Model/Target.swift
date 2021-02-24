@@ -46,7 +46,7 @@ class Target: NSObject, Codable, MKAnnotation {
     //Used to pass properties of the Target class to PAInfoCell when populating a tableView
     func getInfoContent() -> [InfoSectionCellContent] {
         return [
-            InfoSectionCellContent(action: .none, textLine1: targetTypeGroup.rawValue.localized(), textLine2: nil, icon: .questionmark),
+            InfoSectionCellContent(action: .none, textLine1: targetTypeID.rawValue.localized(), textLine2: nil, icon: .questionmark),
             InfoSectionCellContent(action: .address, textLine1: address, textLine2: nil, icon: .address),
             InfoSectionCellContent(action: .email, textLine1: email1, textLine2: email2, icon: .email),
             InfoSectionCellContent(action: .phone, textLine1: telephone1, textLine2: telephone2, icon: .phone),

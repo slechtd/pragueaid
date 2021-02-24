@@ -25,6 +25,26 @@
 "health_care"   = "Zdravotnické zařízení";
 "pharmacies"    = "Lékárna";
 
+//MARK: - TargetTypeID
+
+"A" = "Vojenská lékárna";
+"L" = "Lékárna zařízení ústavní péče";
+"LO" = "Lékárna s lůžkovým zařízením";
+"NO" = "Nem. lékárna s odbor. pracovišti";
+"O" = "Lékárna s odbornými pracovišti";
+"OOVL" = "Odloučené oddělení výdeje léčiv";
+"Z" = "Lékárna";
+"Z/OOVL" = "Lék. s odloučeným výdejem léčiv";
+"ZS-FN" = "Fakultní nemocnice";
+"ZS-N" = "Nemocnice";
+"ZS-NNP" = "Nemocnice následné péče";
+"ZS-OAZ" = "Ostatní ambulantní zařízení";
+"ZS-OZZ" = "Ostatní zdravotnická zařízení";
+"ZS-OZZZ" = "Zvláštní zdravotnická zařízení";
+"ZS-VZP" = "Výdejna zdravotnických prostředků";
+"ZS-ZDS" = "Zdravotnické středisko";
+"ZS-ZS" = "Záchytná stanice";
+
 //MARK: - otherStrings
 
 //titles and navigation:

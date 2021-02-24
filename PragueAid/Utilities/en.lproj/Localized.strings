@@ -25,6 +25,26 @@
 "health_care"   = "Medical institution";
 "pharmacies"    = "Pharmacy";
 
+//MARK: - TargetTypeID
+
+"A" = "";
+"L" = "";
+"LO" = "";
+"NO" = "";
+"O" = "";
+"OOVL" = "";
+"Z" = "";
+"Z/OOVL" = "";
+"ZS-FN" = "";
+"ZS-N" = "";
+"ZS-NNP" = "";
+"ZS-OAZ" = "";
+"ZS-OZZ" = "";
+"ZS-OZZZ" = "";
+"ZS-VZP" = "";
+"ZS-ZDS" = "";
+"ZS-ZS" = "";
+
 //MARK: - otherStrings
 
 //titles and navigation:
