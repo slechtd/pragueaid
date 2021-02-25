@@ -66,7 +66,7 @@ class PAButtonView: UIView {
         if UIDevice.current.userInterfaceIdiom == .pad {
             NSLayoutConstraint.activate([stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.30)])
         } else {
-            NSLayoutConstraint.activate([stackView.widthAnchor.constraint(equalToConstant: self.frame.width)])
+            NSLayoutConstraint.activate([stackView.widthAnchor.constraint(equalToConstant: self.frame.width * 0.90)])
         }
     }
 }
