@@ -23,6 +23,7 @@ enum SFSymbol: String {
     case cross          = "cross"
     case lang           = "captions.bubble"
     case privacy        = "person"
+    case share          = "square.and.arrow.up"
 
 }
 
@@ -74,6 +75,7 @@ enum otherStrings: String {
     case miscellaneous          = "miscellaneous"
     case appLanguage            = "appLanguage"
     case privacyPolicy          = "privacyPolicy"
+    case share                  = "share"
     case aboutThisApp           = "aboutThisApp"
 }
 

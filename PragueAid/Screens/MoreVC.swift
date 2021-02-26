@@ -90,6 +90,15 @@ class MoreVC: UIViewController {
         }
     }
     
+     
+     @objc func share() {
+         let link = URL(string: "https://apps.apple.com/cz/app/pragueaid/id1554479378")
+         let objectsToShare = [link!] as [Any]
+         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
+         self.present(activityVC, animated: true, completion: nil)
+     }
+    
     
     //MARK: - Persistance
     
@@ -170,6 +179,8 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
             case 1:
                 present(UINavigationController(rootViewController: PrivacyVC()), animated: true)
             case 2:
+                share()
+            case 3:
                 present(UINavigationController(rootViewController: AboutVC()), animated: true)
             default:
                 return
@@ -179,5 +190,3 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
         }
     }
 }
-
-

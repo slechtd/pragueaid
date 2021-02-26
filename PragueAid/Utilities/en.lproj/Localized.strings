@@ -78,6 +78,7 @@
 "miscellaneous"         = "MISCELLANEOUS:";
 "appLanguage"           = "App language";
 "privacyPolicy"         = "Privacy policy";
+"share"                 = "Share this app";
 "aboutThisApp"          = "About this app";
 
 //MARK: - PAError

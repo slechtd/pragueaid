@@ -78,6 +78,7 @@
 "miscellaneous"         = "JINÉ:";
 "appLanguage"           = "Jazyk aplikace";
 "privacyPolicy"         = "Ochrana osobních údajů";
+"share"                 = "Sdílet aplikaci";
 "aboutThisApp"          = "O aplikaci";
 
 //MARK: - PAError
