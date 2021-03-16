@@ -67,6 +67,7 @@ extension PrivacyVC: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
         cell.textLabel?.text = otherStrings.privacyMessage.rawValue.localized()
         cell.textLabel?.numberOfLines = 10
+        cell.selectionStyle = .none
         return cell
     }
 }

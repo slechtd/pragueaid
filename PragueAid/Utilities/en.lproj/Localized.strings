@@ -27,23 +27,23 @@
 
 //MARK: - TargetTypeID
 
-"A" = "";
-"L" = "";
-"LO" = "";
-"NO" = "";
-"O" = "";
-"OOVL" = "";
-"Z" = "";
-"Z/OOVL" = "";
-"ZS-FN" = "";
-"ZS-N" = "";
-"ZS-NNP" = "";
-"ZS-OAZ" = "";
-"ZS-OZZ" = "";
-"ZS-OZZZ" = "";
-"ZS-VZP" = "";
-"ZS-ZDS" = "";
-"ZS-ZS" = "";
+"A" = "Military hospital";
+"L" = "Pharmacy";
+"LO" = "Pharmacy";
+"NO" = "Specialized pharmacy";
+"O" = "Specialized pharmacy";
+"OOVL" = "Deatached medical dispensery";
+"Z" = "Pharmacy";
+"Z/OOVL" = "Pharmacy";
+"ZS-FN" = "Teaching hospital";
+"ZS-N" = "Hospital";
+"ZS-NNP" = "After-care hospital";
+"ZS-OAZ" = "Other";
+"ZS-OZZ" = "Other";
+"ZS-OZZZ" = "Special medical institution";
+"ZS-VZP" = "Medical material dispensary";
+"ZS-ZDS" = "Medical center";
+"ZS-ZS" = "Sobering-up station";
 
 //MARK: - otherStrings
 

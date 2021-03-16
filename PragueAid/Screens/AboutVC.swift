@@ -89,6 +89,7 @@ extension AboutVC: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
         cell.textLabel?.text = otherStrings.about.rawValue.localized()
         cell.textLabel?.numberOfLines = 10
+        cell.selectionStyle = .none
         return cell
     }
 }

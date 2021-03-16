@@ -73,6 +73,7 @@ class TargetVC: UIViewController {
         } else {
             for property in target.getOpenings() {
                 let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
+                cell.selectionStyle = .none
                 openingHourCells.append(cell)
             }
         }
@@ -267,6 +268,7 @@ extension TargetVC: UITableViewDataSource, UITableViewDelegate{
         default:
             return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

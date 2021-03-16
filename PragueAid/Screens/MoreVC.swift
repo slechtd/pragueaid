@@ -37,6 +37,9 @@ class MoreVC: UIViewController {
         let pharmaciesFilterCell = PAInfoCell(content: MoreTableViewFilterCells.allCases[0].description, imageString: MoreTableViewFilterCells.allCases[0].image, toggle: true)
         let medicalInstitutionsFilterCell = PAInfoCell(content: MoreTableViewFilterCells.allCases[1].description, imageString: MoreTableViewFilterCells.allCases[1].image, toggle: true)
         
+        pharmaciesFilterCell.selectionStyle = .none
+        medicalInstitutionsFilterCell.selectionStyle = .none
+        
         filterCells.append(pharmaciesFilterCell)
         filterCells.append(medicalInstitutionsFilterCell)
         
@@ -188,5 +191,6 @@ extension MoreVC: UITableViewDataSource, UITableViewDelegate{
         default:
             return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
