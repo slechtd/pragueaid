@@ -12,23 +12,27 @@ class PATabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().tintColor = .systemRed
+        self.setupAppearance()
         viewControllers = [MapNC(), MoreNC()]
     }
     
     
-    func MapNC() -> UINavigationController {
+    private func MapNC() -> UINavigationController {
         let mapVC = MapVC()
         mapVC.title = otherStrings.searchPlaces.rawValue.localized()
         mapVC.tabBarItem = UITabBarItem(title: otherStrings.search.rawValue.localized(), image: UIImage(systemName: SFSymbol.map.rawValue), selectedImage: UIImage(systemName: SFSymbol.mapFill.rawValue))
-        return UINavigationController(rootViewController: mapVC)
+        let nc = UINavigationController(rootViewController: mapVC)
+        nc.setupAppearance()
+        return nc
     }
     
     
-    func MoreNC() -> UINavigationController {
+    private func MoreNC() -> UINavigationController {
         let moreVC = MoreVC()
         moreVC.title = otherStrings.more.rawValue.localized()
         moreVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-        return UINavigationController(rootViewController: moreVC)
+        let nc = UINavigationController(rootViewController: moreVC)
+        nc.setupAppearance()
+        return nc
     }
 }

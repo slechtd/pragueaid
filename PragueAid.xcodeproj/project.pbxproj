@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		651DE0C0272085C900F7E4BA /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651DE0BF272085C900F7E4BA /* UINavigationController+Ext.swift */; };
+		651DE0C22720875E00F7E4BA /* UITabBarController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651DE0C12720875E00F7E4BA /* UITabBarController+Ext.swift */; };
 		65653C6F25D197F10077A396 /* MoreTableViewSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653C6E25D197F10077A396 /* MoreTableViewSections.swift */; };
 		65653C7625D2B4E10077A396 /* FilterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653C7525D2B4E10077A396 /* FilterSettings.swift */; };
 		65653C7925D2D4770077A396 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65653C7825D2D4770077A396 /* PersistanceManager.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		651DE0BF272085C900F7E4BA /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
+		651DE0C12720875E00F7E4BA /* UITabBarController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Ext.swift"; sourceTree = "<group>"; };
 		65653C6E25D197F10077A396 /* MoreTableViewSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewSections.swift; sourceTree = "<group>"; };
 		65653C7525D2B4E10077A396 /* FilterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSettings.swift; sourceTree = "<group>"; };
 		65653C7825D2D4770077A396 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 				68DC85F724EA5946008BA62F /* UIViewControllerExtension.swift */,
 				68CE637D24F3DEE300F62C80 /* ArrayExtension.swift */,
 				68CE638924F7B75900F62C80 /* StringExtension.swift */,
+				651DE0BF272085C900F7E4BA /* UINavigationController+Ext.swift */,
+				651DE0C12720875E00F7E4BA /* UITabBarController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				658D83A725DEC5010065645B /* PrivacyVC.swift in Sources */,
 				68DC85F024E803AF008BA62F /* NetworkManager.swift in Sources */,
 				68DC85FA24EA71F7008BA62F /* TargetVC.swift in Sources */,
+				651DE0C0272085C900F7E4BA /* UINavigationController+Ext.swift in Sources */,
 				68AF590724E7D5AA00C03645 /* MapVC.swift in Sources */,
 				68AF590924E7D5B600C03645 /* MoreVC.swift in Sources */,
 				68DC85FE24EA885F008BA62F /* PAInfoCell.swift in Sources */,
@@ -329,6 +336,7 @@
 				68AF590524E7D53100C03645 /* PATabBarController.swift in Sources */,
 				68DC860224EA9961008BA62F /* TargetTableViewSections.swift in Sources */,
 				68C9A5C424F004E200DE3A9D /* PAButton.swift in Sources */,
+				651DE0C22720875E00F7E4BA /* UITabBarController+Ext.swift in Sources */,
 				68AF58F124E7D48400C03645 /* AppDelegate.swift in Sources */,
 				68CE637E24F3DEE300F62C80 /* ArrayExtension.swift in Sources */,
 				65653C8525D5518B0077A396 /* AboutVC.swift in Sources */,
