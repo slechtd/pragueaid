@@ -39,7 +39,7 @@ class MapVC: UIViewController {
 //MARK: - UI
     
     private func configureCenterToUserLocationButton(){
-        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbol.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
+        let centerToUserLocationButton = UIBarButtonItem(image: UIImage(systemName: SFSymbols.nav.rawValue), style: .plain, target: self, action: #selector(centerToUserLocationButtonPressed))
         centerToUserLocationButton.tintColor = .systemRed
         navigationItem.rightBarButtonItem = centerToUserLocationButton
     }

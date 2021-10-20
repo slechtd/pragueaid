@@ -1,49 +1,15 @@
 //
-//  Constants.swift
+//  Strings.swift
 //  PragueAid
 //
-//  Created by Daniel Šlechta on 16/08/2020.
-//  Copyright © 2020 Daniel Šlechta. All rights reserved.
+//  Created by Daniel Šlechta on 20.10.2021.
+//  Copyright © 2021 Daniel Šlechta. All rights reserved.
 //
 
-
-enum SFSymbol: String {
-    case nav            = "location"
-    case map            = "map"
-    case mapFill        = "map.fill"
-    case star           = "star"
-    case phone          = "phone"
-    case bandage        = "bandage.fill"
-    case unavailable    = "exclamationmark"
-    case chevron        = "chevron.compact.right"
-    case questionmark   = "questionmark"
-    case address        = "mappin"
-    case email          = "envelope"
-    case web            = "globe"
-    case cross          = "cross"
-    case lang           = "captions.bubble"
-    case privacy        = "person"
-    case share          = "square.and.arrow.up"
-
-}
-
-
-//MARK: - Localized strings
+import Foundation
 
 //Raw values not meant to be used as literals - see Localized.strings
-enum AlertMessages: String {
-    case oops                       = "oops"
-    case heart                      = "heart"
-    case connection                 = "connection"
-    case noPermissions              = "noPermissions"
-    case restrictedPermissions      = "restrictedPermissions"
-    case noUserlocation             = "noUserlocation"
-    case notInPrague                = "notInPrague"
-    case noInternet                 = "noInternet"
-}
-
-//Raw values not meant to be used as literals - see Localized.strings
-enum otherStrings: String {
+enum Strings: String {
     //Titles and navigation:
     case search                 = "search"
     case more                   = "more"
@@ -78,4 +44,3 @@ enum otherStrings: String {
     case share                  = "share"
     case aboutThisApp           = "aboutThisApp"
 }
-

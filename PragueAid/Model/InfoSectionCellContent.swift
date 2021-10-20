@@ -14,7 +14,7 @@ struct InfoSectionCellContent {
     var action: CellAction
     var textLine1: String
     var textLine2: String?
-    var icon: SFSymbol
+    var icon: SFSymbols
 }
 
 enum CellAction {

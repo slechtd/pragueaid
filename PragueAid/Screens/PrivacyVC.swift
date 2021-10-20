@@ -25,7 +25,7 @@ class PrivacyVC: UIViewController {
     
     private func configureVC() {
         view.backgroundColor = .systemBackground
-        navigationItem.title = otherStrings.privacyPolicy.rawValue.localized()
+        navigationItem.title = Strings.privacyPolicy.rawValue.localized()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissTapped))
         navigationItem.rightBarButtonItem = cancelButton
     }
@@ -65,7 +65,7 @@ extension PrivacyVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! PAInfoCell
-        cell.textLabel?.text = otherStrings.privacyMessage.rawValue.localized()
+        cell.textLabel?.text = Strings.privacyMessage.rawValue.localized()
         cell.textLabel?.numberOfLines = 10
         cell.selectionStyle = .none
         return cell

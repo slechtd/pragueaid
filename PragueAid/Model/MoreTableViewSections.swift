@@ -13,8 +13,8 @@ enum MoreTableViewSections: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .filter: return otherStrings.filterLocations.rawValue.localized()
-        case .misc: return otherStrings.miscellaneous.rawValue.localized()
+        case .filter: return Strings.filterLocations.rawValue.localized()
+        case .misc: return Strings.miscellaneous.rawValue.localized()
         }
     }
 }
@@ -26,15 +26,15 @@ enum MoreTableViewFilterCells: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .pharmacies: return otherStrings.pharms.rawValue.localized()
-        case .medicalInstitutions: return otherStrings.medicalInstitutions.rawValue.localized()
+        case .pharmacies: return Strings.pharms.rawValue.localized()
+        case .medicalInstitutions: return Strings.medicalInstitutions.rawValue.localized()
         }
     }
     
     var image: String {
         switch self {
-        case .pharmacies: return SFSymbol.cross.rawValue
-        case .medicalInstitutions: return SFSymbol.bandage.rawValue
+        case .pharmacies: return SFSymbols.cross.rawValue
+        case .medicalInstitutions: return SFSymbols.bandage.rawValue
         }
     }
 }
@@ -48,19 +48,19 @@ enum MoreTableViewMiscCells: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .lang: return otherStrings.appLanguage.rawValue.localized()
-        case .privacy: return otherStrings.privacyPolicy.rawValue.localized()
-        case .share: return otherStrings.share.rawValue.localized()
-        case .about: return otherStrings.aboutThisApp.rawValue.localized()
+        case .lang: return Strings.appLanguage.rawValue.localized()
+        case .privacy: return Strings.privacyPolicy.rawValue.localized()
+        case .share: return Strings.share.rawValue.localized()
+        case .about: return Strings.aboutThisApp.rawValue.localized()
         }
     }
     
     var image: String {
         switch self {
-        case .lang: return SFSymbol.lang.rawValue
-        case .privacy: return SFSymbol.privacy.rawValue
-        case .share: return SFSymbol.share.rawValue
-        case .about: return SFSymbol.questionmark.rawValue
+        case .lang: return SFSymbols.lang.rawValue
+        case .privacy: return SFSymbols.privacy.rawValue
+        case .share: return SFSymbols.share.rawValue
+        case .about: return SFSymbols.questionmark.rawValue
         }
     }
     

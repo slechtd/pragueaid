@@ -63,13 +63,13 @@ class PAButton: UIButton {
     
     
     private func configureNavigate(){
-        self.setImage(UIImage(systemName: SFSymbol.nav.rawValue), for: .normal)
+        self.setImage(UIImage(systemName: SFSymbols.nav.rawValue), for: .normal)
         
     }
     
     
     private func configureCall(){
-        self.setImage(UIImage(systemName: SFSymbol.phone.rawValue), for: .normal)
+        self.setImage(UIImage(systemName: SFSymbols.phone.rawValue), for: .normal)
     }
     
     

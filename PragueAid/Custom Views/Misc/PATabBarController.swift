@@ -19,8 +19,8 @@ class PATabBarController: UITabBarController {
     
     private func MapNC() -> UINavigationController {
         let mapVC = MapVC()
-        mapVC.title = otherStrings.searchPlaces.rawValue.localized()
-        mapVC.tabBarItem = UITabBarItem(title: otherStrings.search.rawValue.localized(), image: UIImage(systemName: SFSymbol.map.rawValue), selectedImage: UIImage(systemName: SFSymbol.mapFill.rawValue))
+        mapVC.title = Strings.searchPlaces.rawValue.localized()
+        mapVC.tabBarItem = UITabBarItem(title: Strings.search.rawValue.localized(), image: UIImage(systemName: SFSymbols.map.rawValue), selectedImage: UIImage(systemName: SFSymbols.mapFill.rawValue))
         let nc = UINavigationController(rootViewController: mapVC)
         nc.setupAppearance()
         return nc
@@ -29,7 +29,7 @@ class PATabBarController: UITabBarController {
     
     private func MoreNC() -> UINavigationController {
         let moreVC = MoreVC()
-        moreVC.title = otherStrings.more.rawValue.localized()
+        moreVC.title = Strings.more.rawValue.localized()
         moreVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
         let nc = UINavigationController(rootViewController: moreVC)
         nc.setupAppearance()

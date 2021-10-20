@@ -68,18 +68,18 @@ class TargetVC: UIViewController {
         }
         
         if target.getOpenings().isEmpty {
-            let cell = PAInfoCell(content: otherStrings.unavailable.rawValue.localized(), imageString: SFSymbol.unavailable.rawValue)
+            let cell = PAInfoCell(content: Strings.unavailable.rawValue.localized(), imageString: SFSymbols.unavailable.rawValue)
             openingHourCells.append(cell)
         } else {
             for property in target.getOpenings() {
-                let cell = PAInfoCell(content: property, imageString: SFSymbol.chevron.rawValue)
+                let cell = PAInfoCell(content: property, imageString: SFSymbols.chevron.rawValue)
                 cell.selectionStyle = .none
                 openingHourCells.append(cell)
             }
         }
         
         if target.targetTypeGroup == .pharmacies {
-            let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbol.web.rawValue)
+            let cell = PAInfoCell(content: target.institutionCode, imageString: SFSymbols.web.rawValue)
             credentialCells.append(cell)
         }
     }
@@ -95,7 +95,7 @@ class TargetVC: UIViewController {
         
         headerView = PAButtonView(frame: frame, style: .target)
         headerView?.style = .target
-        footerView = PAFooterView(frame: frame, message: "\(otherStrings.lastUpdated.rawValue.localized()) \(target.updatedAt.prefix(7))")
+        footerView = PAFooterView(frame: frame, message: "\(Strings.lastUpdated.rawValue.localized()) \(target.updatedAt.prefix(7))")
         
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
@@ -162,7 +162,7 @@ class TargetVC: UIViewController {
     
     private func generateEmailActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: otherStrings.cancel.rawValue.localized(), style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: Strings.cancel.rawValue.localized(), style: .cancel))
         if target.email1 != "" {actionSheet.addAction(UIAlertAction(title: target.email1, style: .default, handler: { action in
             guard let url = URL(string: "mailto://\(self.target.email1)") else {return}
             UIApplication.shared.open(url)
@@ -177,7 +177,7 @@ class TargetVC: UIViewController {
     
     private func generateTelephoneActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: otherStrings.cancel.rawValue.localized(), style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: Strings.cancel.rawValue.localized(), style: .cancel))
         if target.telephone1 != "" {actionSheet.addAction(UIAlertAction(title: target.telephone1, style: .default, handler: { action in
             guard let url = URL(string: "tel://+420\(self.target.telephone1.removeAllSpaces())") else {return}
             UIApplication.shared.open(url)
@@ -192,7 +192,7 @@ class TargetVC: UIViewController {
     
     private func generateWebActionSheet() -> UIAlertController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: otherStrings.cancel.rawValue.localized(), style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: Strings.cancel.rawValue.localized(), style: .cancel))
         if target.web1 != "" {actionSheet.addAction(UIAlertAction(title: target.web1, style: .default, handler: { action in
             guard let url = URL(string: "http://www.\(self.target.web1)") else {return}
             self.presentSafariVC(with: url)

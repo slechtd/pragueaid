@@ -14,9 +14,9 @@ enum TargetTableViewSections: Int, CaseIterable {
     
     var description: String {
         switch self {
-        case .information: return otherStrings.information.rawValue.localized()
-        case .openingHours: return otherStrings.openingHours.rawValue.localized()
-        case .credentials: return otherStrings.pharmacyCredentials.rawValue.localized()
+        case .information: return Strings.information.rawValue.localized()
+        case .openingHours: return Strings.openingHours.rawValue.localized()
+        case .credentials: return Strings.pharmacyCredentials.rawValue.localized()
         }
     }
 }
