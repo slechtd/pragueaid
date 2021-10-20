@@ -11,7 +11,7 @@ import UIKit
 
 extension UITabBarController {
     
-    func setupAppearance(color: UIColor = .secondarySystemBackground, tint: UIColor = .systemRed){
+    func setupAppearance(color: UIColor = .secondarySystemBackground.withAlphaComponent(0.7), tint: UIColor = .systemRed){
         
         if #available(iOS 13.0, *) {
             let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()

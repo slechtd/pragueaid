@@ -11,7 +11,7 @@ import UIKit
 
 extension UINavigationController {
     
-    func setupAppearance(color: UIColor = .secondarySystemBackground) {
+    func setupAppearance(color: UIColor = .secondarySystemBackground.withAlphaComponent(0.99)) {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = color
