@@ -175,7 +175,7 @@ class MapVC: UIViewController {
     
     func resolveAuthStatus(){
         if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
+            switch locationManager.authorizationStatus {
             case .notDetermined:
                 mapView.centerOnDefaultLocation()
                 locationManager.requestWhenInUseAuthorization()
