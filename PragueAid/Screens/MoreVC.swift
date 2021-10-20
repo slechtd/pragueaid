@@ -57,6 +57,7 @@ class MoreVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 50
+        tableView.isScrollEnabled = false
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false

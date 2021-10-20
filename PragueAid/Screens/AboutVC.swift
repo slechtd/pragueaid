@@ -42,6 +42,7 @@ class AboutVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 200
+        tableView.isScrollEnabled = false
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 50)

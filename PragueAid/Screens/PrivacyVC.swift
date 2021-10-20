@@ -40,6 +40,7 @@ class PrivacyVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 150
+        tableView.isScrollEnabled = false
         tableView.register(PAInfoCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
